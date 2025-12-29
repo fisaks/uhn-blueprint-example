@@ -1,0 +1,17 @@
+{
+  "name": "uhn-blueprint-example",
+  "private": true,
+  "type": "module",
+
+  "scripts": {
+    "build": "uhn-blueprint build",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@uhn/blueprint": "link:../uxp/packages/uhn-blueprint/"
+  },
+  "devDependencies": {
+    "tsx": "^4.20.6",
+    "typescript": "^5.9.3"
+  }
+}

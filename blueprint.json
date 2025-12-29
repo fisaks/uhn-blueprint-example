@@ -1,0 +1,6 @@
+{
+    "identifier": "example-blueprint",
+    "name": "Example Blueprint",
+    "description": "An example UHN Blueprint project.",
+    "schemaVersion": 1
+}
