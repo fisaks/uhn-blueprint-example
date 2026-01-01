@@ -20,28 +20,28 @@ export type DigitalOutputProps = Omit<DigitalOutputResourceBase<
 
 // Project-local helpers (optional)
 export function inputPir(props: DigitalInputProps) {
-    return digitalInput<PInputKind, Edge, InputDevice, Pin>({
+    return digitalInput<"pir", Edge, InputDevice, Pin>({
         ...props,
         inputKind: "pir",
         inputType: "push",
     });
 }
 export function inputButtonPush(props: DigitalInputProps) {
-    return digitalInput<PInputKind, Edge, InputDevice, Pin>({
+    return digitalInput<"button", Edge, InputDevice, Pin>({
         ...props,
         inputKind: "button",
         inputType: "push",
     });
 }
 export function inputButtonToggle(props: DigitalInputProps) {
-    return digitalInput<PInputKind, Edge, InputDevice, Pin>({
+    return digitalInput<"button", Edge, InputDevice, Pin>({
         ...props,
         inputKind: "button",
         inputType: "toggle",
     });
 }
 export function inputLightSensor(props: DigitalInputProps) {
-    return digitalInput<PInputKind, Edge, InputDevice, Pin>({
+    return digitalInput<"lightSensor", Edge, InputDevice, Pin>({
         ...props,
         inputKind: "lightSensor",
         inputType: "toggle",
@@ -49,26 +49,26 @@ export function inputLightSensor(props: DigitalInputProps) {
 }
 
 export function outputSocket(props: DigitalOutputProps) {
-    return digitalOutput<POutputKind, Edge, OutputDevice, Pin>({
+    return digitalOutput<"socket", Edge, OutputDevice, Pin>({
         ...props,
         outputKind: "socket",
     });
 }
 export function outputLight(props: DigitalOutputProps) {
-    return digitalOutput<POutputKind, Edge, OutputDevice, Pin>({
+    return digitalOutput<"light", Edge, OutputDevice, Pin>({
         ...props,
         outputKind: "light",
     });
 }
 export function outputIndicatorLight(props: DigitalOutputProps) {
-    return digitalOutput<POutputKind, Edge, OutputDevice, Pin>({
+    return digitalOutput<"indicator", Edge, OutputDevice, Pin>({
         ...props,
         outputKind: "indicator",
     });
 }
 
 export function outputRelay(props: DigitalOutputProps) {
-    return digitalOutput<POutputKind, Edge, OutputDevice, Pin>({
+    return digitalOutput<"relay", Edge, OutputDevice, Pin>({
         ...props,
         outputKind: "relay",
     });
