@@ -6,7 +6,7 @@
   "scripts": {
     "build": "uhn-blueprint build",
     "typecheck": "tsc --noEmit",
-    "sourcemaps": "tsc --sourceMap --inlineSources"
+    "sourcemaps": "tsc -p tsconfig.blueprint.json"
   },
   "dependencies": {
     "@uhn/blueprint": "link:../uxp/packages/uhn-blueprint/"

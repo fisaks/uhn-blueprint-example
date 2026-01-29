@@ -1,0 +1,17 @@
+{
+  "extends": "./tsconfig.json",
+
+  "compilerOptions": {
+    "rootDir": "dist/blueprint-tmp/src",
+    "outDir": "dist/blueprint-tmp/out",
+
+    "sourceMap": true,
+    "inlineSources": true
+  },
+
+  "exclude": [],
+  
+  "include": [
+    "dist/blueprint-tmp/src/**/*.ts"
+  ]
+}
