@@ -158,13 +158,14 @@ An example vscode launch configuration:
             ],
             "sourceMaps": true,
             "outFiles": [],
-            "localRoot": "${workspaceFolder}/dist/blueprint-tmp/out",
-            "remoteRoot": "/uhn-workspace/blueprint/active/dist",
+            "localRoot": "/",
+            "remoteRoot": "/",
             "sourceMapPathOverrides": {
-                "/uhn-workspace/blueprint/active/dist/*": "${workspaceFolder}/dist/blueprint-tmp/out/*",
+                "file:///uhn-workspace/blueprint/active/dist/*": "${workspaceFolder}/dist/blueprint-tmp/out/*",
+                "file:///uhn-runtime/node_modules/*": "/home/user/Codes/uxp/node_modules/*",
                 "/uhn-runtime/*": "/home/user/Codes/uxp/*"
             }
-        }
+        }     
     ]
 }
 ```
