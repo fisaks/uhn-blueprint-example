@@ -44,12 +44,6 @@ export const toiletRelayTest = outputRelay({
     pin: 6,
     description: "Just a test relay output",
 });
-export const toiletDuplicateTest = outputRelay({
-    edge: "edge1",
-    device: "toilet_io8_1",
-    pin: 6,
-    description: "Just a test relay output to test duplicate pins",
-});
 
 export const toiletPanelButtonTopLeft = inputButtonPush({
     edge: "edge1",
