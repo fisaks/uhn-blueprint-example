@@ -138,5 +138,6 @@ export const kitchenPanelButtonWallEdgeBottomRight = inputButtonPush({
 });
 
 export const kitchenTimer=timer({
+    edge: "edge1",
     description: "Timer resource for kitchen automation",
 });
