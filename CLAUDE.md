@@ -24,7 +24,7 @@ Three-layer structure under `src/`:
 
 - **`resources/`** - Exported resource instances created via factory functions. Each file represents a room/area (e.g., `kitchen.ts`, `toilet.ts`). Resources map to physical devices by `edge`, `device`, and `pin`. Timers are created with `timer()` from `@uhn/blueprint`. Only resource exports should come from this folder.
 
-- **`rules/`** - Automation rules created with `rule()` from `@uhn/blueprint`. Rules use a fluent API chaining triggers (`.onTap()`, `.onLongPress()`, `.onActivated()`, `.onTimerActivated()`, `.onTimerDeactivated()`, `.suppress()`) followed by `.run(ctx => ...)`. The run callback receives a context with `ctx.runtime.getState()`, `ctx.timers`, `ctx.mute`, `ctx.logger`, and `ctx.cause`. Actions are returned via `ruleActions([...])` with action objects like `{ type: "setOutput", resource, value }`.
+- **`rules/`** - Automation rules created with `rule()` from `@uhn/blueprint`. Rules use a fluent API chaining triggers (`.onTap()`, `.onLongPress()`, `.onActivated()`, `.onTimerActivated()`, `.onTimerDeactivated()`, `.suppress()`) followed by `.run(ctx => ...)`. The run callback receives a context with `ctx.runtime.getState()`, `ctx.timers`, `ctx.mute`, `ctx.logger`, and `ctx.cause`. Actions are returned via `ruleActions([...])` with action objects like `{ type: "setDigitalOutput", resource, value }`.
 
 ## Debugging Workflow
 

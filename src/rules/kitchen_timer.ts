@@ -18,13 +18,13 @@ const kitchenCountertopLightTimer = rule({ description: "Start kitchen timer on 
         if (isOn) {
             ctx.timers.clear(kitchenTimer);
             return ruleActions([
-                { type: "setOutput", resource: kitchenLightCountertops, value: false },
+                { type: "setDigitalOutput", resource: kitchenLightCountertops, value: false },
             ]);
         }
         ctx.logger.info("Starting kitchen countertop timer for 1 minutes");
         ctx.timers.start(kitchenTimer,  60 * 1000, "restart");
         return ruleActions([
-            { type: "setOutput", resource: kitchenLightCountertops, value: true },
+            { type: "setDigitalOutput", resource: kitchenLightCountertops, value: true },
         ]);
     });
 
@@ -34,6 +34,6 @@ const kitchenTimerExpired = rule({ description: "Turn off countertop lights when
     .run((ctx) => {
         ctx.logger.info("Kitchen timer expired — turning off countertop lights");
         return ruleActions([
-            { type: "setOutput", resource: kitchenLightCountertops, value: false },
+            { type: "setDigitalOutput", resource: kitchenLightCountertops, value: false },
         ]);
     });

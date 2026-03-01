@@ -23,7 +23,7 @@ const turnOnToiletMirrorLight = rule({})
         }
         ctx.logger.info("Turning on toilet mirror light", ctx.cause);
         return ruleActions([
-            { type: "setOutput", resource: toiletLightMirror, value: true }
+            { type: "setDigitalOutput", resource: toiletLightMirror, value: true }
         ]);
     });
 
@@ -43,6 +43,6 @@ const turnOffToiletMirrorLight = rule({})
             ctx.mute.rule(toiletPirStartsMirrorTimer, 10_000);
         }
         return ruleActions([
-            { type: "setOutput", resource: toiletLightMirror, value: false }
+            { type: "setDigitalOutput", resource: toiletLightMirror, value: false }
         ]);
     });

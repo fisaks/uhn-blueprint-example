@@ -9,7 +9,7 @@ const kitchenMainLight = rule({ description: "Toggle kitchen main light on tap o
     .onTap(kitchenPanelButtonWallEdgeTopLeft)
     .run((ctx) => {
         return ruleActions([
-            { type: "setOutput", resource: kitchenLightCeiling, value: !ctx.runtime.getState(kitchenLightCeiling) },
+            { type: "setDigitalOutput", resource: kitchenLightCeiling, value: !ctx.runtime.getState(kitchenLightCeiling) },
         ]);
     });
 
@@ -19,7 +19,7 @@ const kitchenToasterSocket = rule({ description: "Toggle kitchen toaster socket 
     .run((ctx) => {
         ctx.logger.info("Long press detected on kitchen panel top left button");
         return ruleActions([
-            { type: "setOutput", resource: kitchenSocketForToaster, value: !ctx.runtime.getState(kitchenSocketForToaster) }
+            { type: "setDigitalOutput", resource: kitchenSocketForToaster, value: !ctx.runtime.getState(kitchenSocketForToaster) }
         ]);
     });
 
