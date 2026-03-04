@@ -2,17 +2,27 @@ import {
     analogInput, AnalogInputResourceBase, analogOutput, AnalogOutputResourceBase,
     BaseAnalogInputKind, BaseAnalogOutputKind,
     BaseInputKind, BaseOutputKind,
+    complex, ComplexResourceBase,
     digitalInput, DigitalInputResourceBase, digitalOutput, DigitalOutputResourceBase,
 } from "@uhn/blueprint";
 
 // Project-local strong literal unions
 export type Edge = "edge1"
-export type OutputDevice = "kitchen_io8_1" | "kitchen_relay8_1" | "toilet_io8_1"
-export type InputDevice = "kitchen_io8_1" | "toilet_io8_1"
-export type AnalogInputDevice = "sauna_temp_1"
+export type OutputDevice = "kitchen_io8_1" | "kitchen_relay8_1" | "toilet_io8_1" | "bathroom_io8_1"
+export type InputDevice = "kitchen_io8_1" | "toilet_io8_1" | "bathroom_io8_1"
+export type AnalogInputDevice = "sauna_temp_1" | "energy_meter_1"
 export type AnalogOutputDevice = "bathroom_dimmer_1"
 export type Pin = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7;
 export type AnalogPin = 0 | 1 | 2 | 3;
+export type EnergyMeterPin =
+    | 1000 | 1001 | 1002 | 1003 | 1004 | 1005 | 1006 | 1007 | 1008 | 1009
+    | 1010 | 1011 | 1012 | 1013 | 1014 | 1015 | 1016 | 1017 | 1018 | 1019
+    | 1020 | 1021 | 1022 | 1023 | 1024 | 1025 | 1026 | 1027 | 1028 | 1029
+    | 1030 | 1031 | 1032 | 1033 | 1034 | 1035 | 1036 | 1037 | 1038 | 1039
+    | 1040 | 1041 | 1042 | 1043 | 1044 | 1045 | 1046 | 1047 | 1048 | 1049
+    | 1050 | 1051 | 1052 | 1053 | 1054 | 1055 | 1056 | 1057 | 1058 | 1059
+    | 1060 | 1061 | 1062 | 1063 | 1064 | 1065 | 1066 | 1067 | 1068 | 1069
+    | 1070 | 1071 | 1072 | 1073 | 1074;
 
 //export type PInputKind = BaseInputKind | "foo"; // Example of extending kinds
 //export type POutputKind = BaseOutputKind | "bar"; // Example of extending kinds
@@ -124,4 +134,31 @@ export function analogValve(props: AnalogOutputProps) {
         ...props,
         analogOutputKind: "valve",
     });
+}
+
+// Energy meter helpers (Shelly Pro 3EM — wide pin range)
+export type EnergyMeterAnalogInputProps = Omit<AnalogInputResourceBase<
+    BaseAnalogInputKind, Edge, "energy_meter_1", EnergyMeterPin>, "type" | "analogInputKind">;
+
+export function energyMeterPower(props: EnergyMeterAnalogInputProps) {
+    return analogInput<"power", Edge, "energy_meter_1", EnergyMeterPin>({
+        unit: "W",
+        ...props,
+        analogInputKind: "power",
+    });
+}
+
+export function energyMeterCurrent(props: EnergyMeterAnalogInputProps) {
+    return analogInput<"current", Edge, "energy_meter_1", EnergyMeterPin>({
+        unit: "A",
+        ...props,
+        analogInputKind: "current",
+    });
+}
+
+// Complex resource props
+export type ComplexProps = Omit<ComplexResourceBase<Edge>, "type" | "device" | "pin">;
+
+export function complexResource(props: ComplexProps) {
+    return complex<Edge>(props);
 }
