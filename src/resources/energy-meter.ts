@@ -55,7 +55,7 @@ export const energyMeterCurrentC = energyMeterCurrent({
 });
 
 export const energyMeterTotal = complexResource({
-    edge: "edge1",
+    host: "edge1",
     description: "Shelly Pro 3EM — total power across all three phases",
     subResources: [
         { resource: energyMeterPowerA, label: "Phase A", group: "Power" },

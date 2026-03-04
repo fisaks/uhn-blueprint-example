@@ -4,10 +4,12 @@ import {
     BaseInputKind, BaseOutputKind,
     complex, ComplexResourceBase,
     digitalInput, DigitalInputResourceBase, digitalOutput, DigitalOutputResourceBase,
+    TimerResourceBase, timer,
 } from "@uhn/blueprint";
 
 // Project-local strong literal unions
 export type Edge = "edge1"
+export type Host = Edge | "master"
 export type OutputDevice = "kitchen_io8_1" | "kitchen_relay8_1" | "toilet_io8_1" | "bathroom_io8_1"
 export type InputDevice = "kitchen_io8_1" | "toilet_io8_1" | "bathroom_io8_1"
 export type AnalogInputDevice = "sauna_temp_1" | "energy_meter_1"
@@ -157,8 +159,15 @@ export function energyMeterCurrent(props: EnergyMeterAnalogInputProps) {
 }
 
 // Complex resource props
-export type ComplexProps = Omit<ComplexResourceBase<Edge>, "type" | "device" | "pin">;
+export type ComplexProps = Omit<ComplexResourceBase<Host>, "type">;
 
 export function complexResource(props: ComplexProps) {
-    return complex<Edge>(props);
+    return complex<Host>(props);
+}
+
+// Timer resource props
+export type TimerProps = Omit<TimerResourceBase<Host>, "type">;
+
+export function timerResource(props: TimerProps) {
+    return timer<Host>(props);
 }

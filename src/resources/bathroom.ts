@@ -58,7 +58,7 @@ export const bathroomVentIndicator = outputIndicatorLight({
 // Tile shows current humidity reading from the sensor.
 
 export const bathroomVentilation = complexResource({
-    edge: "edge1",
+    host: "master",
     description: "Bathroom ventilation system — humidity, fan, occupancy, and status",
     subResources: [
         { resource: bathroomHumidity, label: "Humidity" },

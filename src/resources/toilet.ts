@@ -91,4 +91,4 @@ export const toiletLightSensor = inputLightSensor({
 });
 
 
-export const toiletTimer = timer({ edge: "edge1" })
+export const toiletTimer = timer({ host: "edge1" })
