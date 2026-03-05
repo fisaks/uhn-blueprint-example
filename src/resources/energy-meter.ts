@@ -57,6 +57,9 @@ export const energyMeterCurrentC = energyMeterCurrent({
 export const energyMeterTotal = complexResource({
     host: "edge1",
     description: "Shelly Pro 3EM — total power across all three phases",
+    computeFn: computeSum,
+    computeResources: [energyMeterPowerA, energyMeterPowerB, energyMeterPowerC],
+    unit: "W",
     subResources: [
         { resource: energyMeterPowerA, label: "Phase A", group: "Power" },
         { resource: energyMeterPowerB, label: "Phase B" },
@@ -65,10 +68,4 @@ export const energyMeterTotal = complexResource({
         { resource: energyMeterCurrentB, label: "Phase B" },
         { resource: energyMeterCurrentC, label: "Phase C" },
     ],
-    tileSummary: {
-        mode: "computed",
-        fn: computeSum,
-        resources: [energyMeterPowerA, energyMeterPowerB, energyMeterPowerC],
-        unit: "W",
-    },
 });

@@ -9,6 +9,7 @@ import {
     bathroomButtonVent,
     bathroomFanSpeed,
     bathroomHumidity,
+    bathroomVentilation,
     bathroomVentIndicator,
     bathroomVentTimer,
 } from "../resources/bathroom";
@@ -55,6 +56,7 @@ const bathroomVentTimerExpired = rule({ description: "Stop ventilation when time
 // Uses timers.isRunning() to check current state and toggle accordingly.
 const bathroomManualVentToggle = rule({ description: "Toggle ventilation with button tap" })
     .onTap(bathroomButtonVent)
+    .onTap(bathroomVentilation)
     .run((ctx) => {
         if (ctx.timers.isRunning(bathroomVentTimer)) {
             ctx.logger.info("Manual stop — clearing ventilation timer");

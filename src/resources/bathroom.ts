@@ -1,3 +1,4 @@
+import { ComplexComputeFn } from "@uhn/blueprint";
 import { analogDimmer, analogHumiditySensor, complexResource, inputButtonPush, inputButtonToggle, inputPir, outputIndicatorLight, timerResource } from "../factory/factory";
 
 // --- Base resources ---
@@ -62,17 +63,20 @@ export const bathroomVentTimer = timerResource({
 });
 
 // --- Complex resource: Bathroom Ventilation System ---
-// Combines all base resource types:
-//   - analogInput  (humidity sensor)
-//   - analogOutput (fan speed)
-//   - digitalInput push (PIR occupancy)
-//   - digitalInput toggle (manual override switch)
-//   - digitalOutput (status indicator)
-// Tile shows current humidity reading from the sensor.
+// Tile active when fan is running (speed > 0), inactive when off.
+
+const computeFanActive: ComplexComputeFn = (values) => {
+    for (const value of values.values()) {
+        if (typeof value === "number") return value !== 0;
+    }
+    return false;
+};
 
 export const bathroomVentilation = complexResource({
     host: "master",
     description: "Bathroom ventilation system — humidity, fan, occupancy, and status",
+    computeFn: computeFanActive,
+    computeResources: [bathroomFanSpeed],
     subResources: [
         { resource: bathroomHumidity, label: "Humidity" },
         { resource: bathroomFanSpeed, label: "Fan Speed" },
@@ -80,8 +84,4 @@ export const bathroomVentilation = complexResource({
         { resource: bathroomVentOverride, label: "Override" },
         { resource: bathroomVentIndicator, label: "Status LED" },
     ],
-    tileSummary: {
-        mode: "primary",
-        resource: bathroomHumidity,
-    },
 });
