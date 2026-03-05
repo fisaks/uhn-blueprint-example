@@ -1,4 +1,4 @@
-import { analogDimmer, analogHumiditySensor, complexResource, inputButtonToggle, inputPir, outputIndicatorLight } from "../factory/factory";
+import { analogDimmer, analogHumiditySensor, complexResource, inputButtonPush, inputButtonToggle, inputPir, outputIndicatorLight, timerResource } from "../factory/factory";
 
 // --- Base resources ---
 
@@ -46,6 +46,19 @@ export const bathroomVentIndicator = outputIndicatorLight({
     pin: 0,
     description: "LED indicator showing ventilation is active",
     hidden: true,
+});
+
+export const bathroomButtonVent = inputButtonPush({
+    edge: "edge1",
+    device: "bathroom_io8_1",
+    pin: 3,
+    description: "Push button to manually start/stop bathroom ventilation",
+    hidden: false,
+});
+
+export const bathroomVentTimer = timerResource({
+    host: "master",
+    description: "Master-hosted timer controlling bathroom ventilation duration",
 });
 
 // --- Complex resource: Bathroom Ventilation System ---

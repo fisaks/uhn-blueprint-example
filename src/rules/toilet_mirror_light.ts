@@ -1,13 +1,13 @@
 // src/rules/toilet_mirror_light.ts
-import { rule, ruleActions } from "@uhn/blueprint";
+import { minutes, rule, ruleActions, seconds } from "@uhn/blueprint";
 import { toiletLightMirror, toiletPanelButtonBottomLeft, toiletPirSensor, toiletTimer } from "../resources/toilet";
 
 const toiletPirStartsMirrorTimer = rule({})
     .onActivated(toiletPirSensor)
-    .suppress(10000)
+    .suppress(seconds(10))
     .run((ctx) => {
         ctx.logger.info("Toilet PIR activated - turning on toilet mirror light for 30 sec");
-        ctx.timers.start(toiletTimer, 30 * 1000, "restart");
+        ctx.timers.start(toiletTimer, seconds(30), "restart");
         return [];
     });
 
@@ -19,7 +19,7 @@ const turnOnToiletMirrorLight = rule({})
             return [];
         }
         if (ctx.cause.event === "tap") {
-            ctx.mute.rule(toiletPirStartsMirrorTimer, 10 * 60 * 1000, "buttonManualTap");
+            ctx.mute.rule(toiletPirStartsMirrorTimer, minutes(10), "buttonManualTap");
         }
         ctx.logger.info("Turning on toilet mirror light", ctx.cause);
         return ruleActions([
@@ -40,7 +40,7 @@ const turnOffToiletMirrorLight = rule({})
         }
         if (ctx.cause.event === "tap") {
             ctx.mute.clearMute(toiletPirStartsMirrorTimer, "buttonManualTap");
-            ctx.mute.rule(toiletPirStartsMirrorTimer, 10_000);
+            ctx.mute.rule(toiletPirStartsMirrorTimer, seconds(10));
         }
         return ruleActions([
             { type: "setDigitalOutput", resource: toiletLightMirror, value: false }

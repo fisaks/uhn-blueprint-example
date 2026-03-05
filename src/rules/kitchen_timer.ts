@@ -3,7 +3,7 @@
 // These rules run on master to show the cross-edge timer flow:
 // master dispatches timerStart → edge runs timer → edge publishes state via MQTT → master receives state
 
-import { rule, ruleActions } from "@uhn/blueprint";
+import { minutes, rule, ruleActions } from "@uhn/blueprint";
 import {
     kitchenLightCountertops,
     kitchenPanelButtonCountertopTopRow,
@@ -22,7 +22,7 @@ const kitchenCountertopLightTimer = rule({ description: "Start kitchen timer on 
             ]);
         }
         ctx.logger.info("Starting kitchen countertop timer for 1 minutes");
-        ctx.timers.start(kitchenTimer,  60 * 1000, "restart");
+        ctx.timers.start(kitchenTimer, minutes(1), "restart");
         return ruleActions([
             { type: "setDigitalOutput", resource: kitchenLightCountertops, value: true },
         ]);

@@ -1,6 +1,6 @@
 // src/rules/kitchen_automation.ts
 
-import { rule, ruleActions } from "@uhn/blueprint";
+import { rule, ruleActions, seconds } from "@uhn/blueprint";
 import { kitchenLightCeiling, kitchenPanelButtonWallEdgeTopLeft, kitchenPanelButtonWallEdgeTopRight, kitchenSocketForToaster } from "../resources/kitchen";
 
 
@@ -14,7 +14,7 @@ const kitchenMainLight = rule({ description: "Toggle kitchen main light on tap o
     });
 
 const kitchenToasterSocket = rule({ description: "Toggle kitchen toaster socket on long press of top left button on wall edge panel" })
-    .onLongPress(kitchenPanelButtonWallEdgeTopLeft, 2000)
+    .onLongPress(kitchenPanelButtonWallEdgeTopLeft, seconds(2))
     .executionTarget("master")
     .run((ctx) => {
         ctx.logger.info("Long press detected on kitchen panel top left button");
