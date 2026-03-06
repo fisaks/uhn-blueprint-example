@@ -1,5 +1,5 @@
 import { timer } from "@uhn/blueprint";
-import { inputButtonPush, outputIndicatorLight, outputLight, outputSocket } from "../factory/factory";
+import { inputButtonPush, outputIndicatorLight, outputLight, outputSocket, virtualButton, virtualToggle } from "../factory/factory";
 
 export const kitchenLightCeiling = outputLight({
     edge: "edge1",
@@ -140,4 +140,14 @@ export const kitchenPanelButtonWallEdgeBottomRight = inputButtonPush({
 export const kitchenTimer=timer({
     host: "edge1",
     description: "Timer resource for kitchen automation",
+});
+
+export const kitchenVirtualButtonCeilingLight = virtualButton({
+    host: "master",
+    description: "Virtual push button to control kitchen ceiling light from UI",
+});
+
+export const kitchenVirtualToggleNightMode = virtualToggle({
+    host: "master",
+    description: "Virtual toggle for kitchen night mode",
 });
