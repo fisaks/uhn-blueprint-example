@@ -5,7 +5,7 @@ import {
     complex, ComplexResourceBase,
     digitalInput, DigitalInputResourceBase, digitalOutput, DigitalOutputResourceBase,
     TimerResourceBase, timer,
-    virtualInput, VirtualInputResourceBase,
+    virtualDigitalInput, VirtualDigitalInputResourceBase,
 } from "@uhn/blueprint";
 
 // Project-local strong literal unions
@@ -174,12 +174,12 @@ export function timerResource(props: TimerProps) {
 }
 
 // Virtual input resource props
-export type VirtualInputProps = Omit<VirtualInputResourceBase<Host>, "type" | "inputType">;
+export type VirtualDigitalInputProps = Omit<VirtualDigitalInputResourceBase<Host>, "type" | "inputType">;
 
-export function virtualButton(props: VirtualInputProps) {
-    return virtualInput<Host>({ ...props, inputType: "push" });
+export function virtualButton(props: VirtualDigitalInputProps) {
+    return virtualDigitalInput<Host>({ ...props, inputType: "push" });
 }
 
-export function virtualToggle(props: VirtualInputProps) {
-    return virtualInput<Host>({ ...props, inputType: "toggle" });
+export function virtualToggle(props: VirtualDigitalInputProps) {
+    return virtualDigitalInput<Host>({ ...props, inputType: "toggle" });
 }
