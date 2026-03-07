@@ -6,6 +6,7 @@ import {
     digitalInput, DigitalInputResourceBase, digitalOutput, DigitalOutputResourceBase,
     TimerResourceBase, timer,
     virtualDigitalInput, VirtualDigitalInputResourceBase,
+    virtualAnalogOutput, VirtualAnalogOutputResourceBase,
 } from "@uhn/blueprint";
 
 // Project-local strong literal unions
@@ -182,4 +183,11 @@ export function virtualButton(props: VirtualDigitalInputProps) {
 
 export function virtualToggle(props: VirtualDigitalInputProps) {
     return virtualDigitalInput<Host>({ ...props, inputType: "toggle" });
+}
+
+// Virtual analog output resource props
+export type VirtualAnalogOutputProps = Omit<VirtualAnalogOutputResourceBase<Host>, "type">;
+
+export function virtualAnalog(props: VirtualAnalogOutputProps) {
+    return virtualAnalogOutput<Host>(props);
 }

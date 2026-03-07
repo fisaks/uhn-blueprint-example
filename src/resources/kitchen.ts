@@ -1,5 +1,5 @@
 import { timer } from "@uhn/blueprint";
-import { inputButtonPush, outputIndicatorLight, outputLight, outputSocket, virtualButton, virtualToggle } from "../factory/factory";
+import { inputButtonPush, inputPir, outputIndicatorLight, outputLight, outputSocket, virtualAnalog, virtualButton, virtualToggle } from "../factory/factory";
 
 export const kitchenLightCeiling = outputLight({
     edge: "edge1",
@@ -137,6 +137,13 @@ export const kitchenPanelButtonWallEdgeBottomRight = inputButtonPush({
     description: "Bottom right button on the kitchen wall panel on the edge of the wall",
 });
 
+export const kitchenPir = inputPir({
+    edge: "edge1",
+    device: "kitchen_io8_1",
+    pin: 6,
+    description: "PIR motion sensor in the kitchen area",
+});
+
 export const kitchenTimer=timer({
     host: "edge1",
     description: "Timer resource for kitchen automation",
@@ -150,4 +157,13 @@ export const kitchenVirtualButtonCeilingLight = virtualButton({
 export const kitchenVirtualToggleNightMode = virtualToggle({
     host: "master",
     description: "Virtual toggle for kitchen night mode",
+});
+
+export const kitchenVirtualDimmer = virtualAnalog({
+    host: "master",
+    min: 0,
+    max: 100,
+    step: 1,
+    unit: "%",
+    description: "Virtual dimmer level for kitchen ambient lighting",
 });
