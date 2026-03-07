@@ -1,9 +1,12 @@
 import { view } from "@uhn/blueprint";
 import {
+    kitchenCeilingTimer,
+    kitchenCountertopTimer,
     kitchenLightCeiling,
+    kitchenLightCountertops,
+    kitchenPanelButtonCountertopTopRow,
     kitchenPanelButtonWallEdgeTopLeft,
     kitchenPir,
-    kitchenTimer,
 } from "../resources/kitchen";
 
 export const kitchenCeilingLightView = view({
@@ -11,9 +14,22 @@ export const kitchenCeilingLightView = view({
     command: { resource: kitchenPanelButtonWallEdgeTopLeft, type: "tap" },
     stateDisplay: {
         items: [
-            { resource: kitchenTimer, label: "Timer", style: "value" },
-            { resource: kitchenPir, style: "flash" ,icon: "motion" },
+            { resource: kitchenCeilingTimer, label: "Timer", style: "value" },
+            { resource: kitchenPir, style: "flash", icon: "sensor:motion" },
         ],
     },
-    description: "Kitchen ceiling light controlled by wall button, with timer countdown and motion indicator",
+    icon: "lighting:ceiling",
+    description: "Kitchen ceiling light with auto-off timer and motion indicator",
+});
+
+export const kitchenCountertopLightView = view({
+    stateFrom: [{ resource: kitchenLightCountertops }],
+    command: { resource: kitchenPanelButtonCountertopTopRow, type: "tap" },
+    stateDisplay: {
+        items: [
+            { resource: kitchenCountertopTimer, label: "Timer", style: "value" },
+        ],
+    },
+    icon: "lighting:bulb",
+    description: "Kitchen countertop lights with auto-off timer",
 });

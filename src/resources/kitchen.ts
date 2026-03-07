@@ -5,6 +5,7 @@ export const kitchenLightCeiling = outputLight({
     edge: "edge1",
     device: "kitchen_io8_1",
     pin: 0,
+    icon: "lighting:ceiling",
     description: "Main ceiling light in the kitchen area",
 });
 
@@ -141,12 +142,18 @@ export const kitchenPir = inputPir({
     edge: "edge1",
     device: "kitchen_io8_1",
     pin: 6,
+    icon: "sensor:pir",
     description: "PIR motion sensor in the kitchen area",
 });
 
-export const kitchenTimer=timer({
+export const kitchenCountertopTimer = timer({
     host: "edge1",
-    description: "Timer resource for kitchen automation",
+    description: "Timer for kitchen countertop lights auto-off",
+});
+
+export const kitchenCeilingTimer = timer({
+    host: "edge1",
+    description: "Timer for kitchen ceiling light auto-off",
 });
 
 export const kitchenVirtualButtonCeilingLight = virtualButton({

@@ -1,17 +1,7 @@
 // src/rules/kitchen_automation.ts
 
 import { rule, ruleActions, seconds } from "@uhn/blueprint";
-import { kitchenLightCeiling, kitchenPanelButtonWallEdgeTopLeft, kitchenPanelButtonWallEdgeTopRight, kitchenSocketForToaster } from "../resources/kitchen";
-
-
-const kitchenMainLight = rule({ description: "Toggle kitchen main light on tap of either top button on wall edge panel" })
-    .onTap(kitchenPanelButtonWallEdgeTopRight)
-    .onTap(kitchenPanelButtonWallEdgeTopLeft)
-    .run((ctx) => {
-        return ruleActions([
-            { type: "setDigitalOutput", resource: kitchenLightCeiling, value: !ctx.runtime.getState(kitchenLightCeiling) },
-        ]);
-    });
+import { kitchenPanelButtonWallEdgeTopLeft, kitchenSocketForToaster } from "../resources/kitchen";
 
 const kitchenToasterSocket = rule({ description: "Toggle kitchen toaster socket on long press of top left button on wall edge panel" })
     .onLongPress(kitchenPanelButtonWallEdgeTopLeft, seconds(2))
