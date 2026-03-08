@@ -60,6 +60,7 @@ export const energyMeterTotal = complexResource({
     computeFn: computeSum,
     computeResources: [energyMeterPowerA, energyMeterPowerB, energyMeterPowerC],
     unit: "W",
+    stateLabel: "Total",
     subResources: [
         { resource: energyMeterPowerA, label: "Phase A", group: "Power" },
         { resource: energyMeterPowerB, label: "Phase B" },
