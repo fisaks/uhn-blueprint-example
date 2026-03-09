@@ -7,10 +7,13 @@ import {
     kitchenPir,
     kitchenSocketCoffeeMachine,
     kitchenSocketCountertop,
-    kitchenSocketForToaster,
     kitchenVirtualDimmer,
-    kitchenVirtualToggleNightMode,
+    kitchenVirtualToggleNightMode
 } from "../resources/kitchen";
+import {
+    sceneKitchenEvening,
+    sceneKitchenLightsOff,
+} from "../scenes/kitchen";
 import {
     kitchenCeilingLightView,
     kitchenCountertopLightView,
@@ -25,12 +28,13 @@ export const locationKitchen = location({
         kitchenLightDiningTable,              // digitalOutput (light)
         kitchenLightNight,                    // digitalOutput (light)
         kitchenPir,                           // digitalInput (pir, push)
-        kitchenSocketForToaster,              // digitalOutput (socket)
         kitchenSocketCountertop,              // digitalOutput (socket)
         kitchenSocketCoffeeMachine,           // digitalOutput (socket)
         kitchenPanelIndicatorWallEdgeTop,     // digitalOutput (indicator)
         kitchenVirtualToggleNightMode,        // virtualDigitalInput (toggle)
         kitchenVirtualDimmer,                 // virtualAnalogOutput (slider)
         kitchenCeilingTimer,                  // timer
+        sceneKitchenLightsOff,                // scene
+        sceneKitchenEvening,                  // scene
     ],
 });
