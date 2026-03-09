@@ -9,7 +9,7 @@ import {
     kitchenPir,
 } from "../resources/kitchen";
 
-export const kitchenCeilingLightView = view({
+export const viewKitchenCeilingLight = view({
     stateFrom: [{ resource: kitchenLightCeiling }],
     command: { resource: kitchenPanelButtonWallEdgeTopLeft, type: "tap" },
     stateDisplay: {
@@ -22,7 +22,7 @@ export const kitchenCeilingLightView = view({
     description: "Kitchen ceiling light with auto-off timer and motion indicator",
 });
 
-export const kitchenCountertopLightView = view({
+export const viewKitchenCountertopLight = view({
     stateFrom: [{ resource: kitchenLightCountertops }],
     command: { resource: kitchenPanelButtonCountertopTopRow, type: "tap" },
     stateDisplay: {

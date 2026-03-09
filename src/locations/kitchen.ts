@@ -15,16 +15,16 @@ import {
     sceneKitchenLightsOff,
 } from "../scenes/kitchen";
 import {
-    kitchenCeilingLightView,
-    kitchenCountertopLightView,
+    viewKitchenCeilingLight,
+    viewKitchenCountertopLight,
 } from "../views/kitchen";
 
 export const locationKitchen = location({
     name: "Kitchen",
     icon: "room:kitchen",
     items: [
-        kitchenCeilingLightView,              // view (tap command)
-        kitchenCountertopLightView,           // view (tap command)
+        viewKitchenCeilingLight,              // view (tap command)
+        viewKitchenCountertopLight,           // view (tap command)
         kitchenLightDiningTable,              // digitalOutput (light)
         kitchenLightNight,                    // digitalOutput (light)
         kitchenPir,                           // digitalInput (pir, push)

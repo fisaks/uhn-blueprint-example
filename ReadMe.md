@@ -1,12 +1,12 @@
 # UHN Example Blueprint
 
-> 🚧 **WORK IN PROGRESS** 🚧
-
-This repository contains an **example UHN blueprint project**.  
-It demonstrates how to define **resources** and **rules** using the `@uhn/blueprint` API.
+This repository contains an **example UHN blueprint project**.
+It demonstrates how to define **resources**, **views**, **scenes**, **locations**, and **rules** using the `@uhn/blueprint` API.
 
 The blueprint is intentionally **small, concrete, and realistic**, loosely inspired by a typical home automation setup
 (lights, sockets, rooms, etc.), but it is **not tied to any real system** and does not contain sensitive data.
+
+For the full API reference and authoring guide, see the [Blueprint Authoring Guide](https://github.com/fisaks/uxp/blob/main/docs/uhn/blueprint-authoring-guide.md).
 
 ---
 
@@ -14,11 +14,11 @@ The blueprint is intentionally **small, concrete, and realistic**, loosely inspi
 
 A UHN blueprint is a declarative description of:
 
-- **Resources**  
-  Things that exist in the system (e.g. lights, sockets, inputs, outputs).
-
-- **Rules**  
-  Logic that reacts to changes in resources and produces actions.
+- **Resources** — Physical and logical devices (lights, sockets, sensors, timers, virtual inputs)
+- **Views** — Interactive UI tiles that read state from resources and send commands
+- **Scenes** — Preset command groups that control multiple resources at once
+- **Locations** — Room/area groupings of resources, views, and scenes for the UI
+- **Rules** — Automation logic that reacts to resource events and produces actions
 
 Blueprints are **authored in TypeScript**, validated and normalized at build time, and then executed by the UHN runtime.
 
@@ -33,21 +33,37 @@ This repository serves as:
 
 ```text
 src/
-├── factory/        # Resource factory functions
+├── factory/        # Project-level factory wrappers (type-safe helpers)
 ├── resources/      # Resource definitions
-└── rules/          # Rule definitions
+├── views/          # InteractionView UI tile definitions
+├── scenes/         # Scene preset definitions
+├── locations/      # Room/area groupings for the UI
+├── rules/          # Automation rule definitions
+└── helpers/        # Shared utilities (optional, any structure)
 ```
 
 ### `src/factory`
-Contains factory functions used to define resources.  
-This folder acts as the **single source of truth** for what counts as a resource factory.
+Contains project-level factory functions wrapping `@uhn/blueprint` base factories with project-specific type unions (`Edge`, `Device`, `Pin`).
+Functions like `outputLight()`, `inputButtonPush()` pre-fill `inputKind`/`outputKind` so resource definitions stay concise.
 
 ### `src/resources`
-Contains exported resource definitions.  
+Contains exported resource definitions. Files can be organized however you like (by room, by device type, etc.).
 Only resources should be exported from this folder.
 
+### `src/views`
+Contains InteractionView definitions created using the `view()` factory.
+Views define UI tiles that display resource state and send commands.
+
+### `src/scenes`
+Contains scene definitions created using the `scene()` factory.
+Scenes group multiple resource commands into reusable presets.
+
+### `src/locations`
+Contains location definitions created using the `location()` factory.
+Locations group resources, views, and scenes into room/area containers for the UI.
+
 ### `src/rules`
-Contains rule definitions created using the `rule()` factory.
+Contains automation rules created using the `rule()` factory.
 
 ---
 

@@ -6,14 +6,14 @@ import {
     bathroomVentilation,
     bathroomVentTimer,
 } from "../resources/bathroom";
-import { bathroomDimmerView, bathroomVentilationView } from "../views/bathroom";
+import { viewBathroomDimmer, viewBathroomVentilation } from "../views/bathroom";
 
 export const locationBathroom = location({
     name: "Bathroom",
     icon: "room:bathroom",
     items: [
-        bathroomDimmerView,          // view with setAnalog command (slider)
-        bathroomVentilationView,     // view with setAnalog + stateDisplay
+        viewBathroomDimmer,          // view with setAnalog command (slider)
+        viewBathroomVentilation,     // view with setAnalog + stateDisplay
         bathroomVentilation,         // complex resource
         bathroomDimmerCeiling,       // analogOutput resource (inline slider)
         bathroomHumidity,            // analogInput resource
