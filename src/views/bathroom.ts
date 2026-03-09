@@ -1,4 +1,4 @@
-import { view } from "@uhn/blueprint";
+import { InteractionView, view } from "@uhn/blueprint";
 import {
     bathroomDimmerCeiling,
     bathroomFanSpeed,
@@ -8,8 +8,10 @@ import {
     bathroomVentTimer,
 } from "../resources/bathroom";
 
+const stateFrom:InteractionView["stateFrom"] = [{ resource: bathroomDimmerCeiling, activeWhen: { above: 0 } }];
+
 export const viewBathroomDimmer = view({
-    stateFrom: [{ resource: bathroomDimmerCeiling, activeWhen: { above: 0 } }],
+    stateFrom,
     command: { resource: bathroomDimmerCeiling, type: "setAnalog", min: 0, max: 100, step: 5, unit: "%" },
     icon: "lighting:ceiling",
     description: "Dimmable bathroom ceiling light",
