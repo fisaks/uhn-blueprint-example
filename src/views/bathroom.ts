@@ -12,14 +12,14 @@ const stateFrom:InteractionView["stateFrom"] = [{ resource: bathroomDimmerCeilin
 
 export const viewBathroomDimmer = view({
     stateFrom,
-    command: { resource: bathroomDimmerCeiling, type: "setAnalog", min: 0, max: 100, step: 5, unit: "%" },
+    command: { resource: bathroomDimmerCeiling, type: "setAnalog", min: 0, max: 100, step: 5, unit: "%", defaultOnValue: 70 },
     icon: "lighting:ceiling",
     description: "Dimmable bathroom ceiling light",
 });
 
 export const viewBathroomVentilation = view({
     stateFrom: [{ resource: bathroomFanSpeed, activeWhen: { above: 0 } }],
-    command: { resource: bathroomFanSpeed, type: "setAnalog", min: 0, max: 100, step: 10, unit: "%" },
+    command: { resource: bathroomFanSpeed, type: "setAnalog", min: 0, max: 100, step: 10, unit: "%", defaultOnValue: 60 },
     stateDisplay: {
         items: [
             { resource: bathroomHumidity, label: "Humidity", unit: "%", style: "value" },

@@ -7,6 +7,7 @@ export const bathroomDimmerCeiling = analogDimmer({
     edge: "edge1",
     device: "bathroom_dimmer_1",
     pin: 0,
+    defaultOnValue: 70,
     description: "Dimmable ceiling light in the bathroom",
 });
 
@@ -14,6 +15,7 @@ export const bathroomFanSpeed = analogDimmer({
     edge: "edge1",
     device: "bathroom_dimmer_1",
     pin: 1,
+    defaultOnValue: 60,
     description: "Ventilation fan speed control (0-100%)",
 });
 

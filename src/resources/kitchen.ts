@@ -172,5 +172,6 @@ export const kitchenVirtualDimmer = virtualAnalog({
     max: 100,
     step: 1,
     unit: "%",
+    defaultOnValue: 80,
     description: "Virtual dimmer level for kitchen ambient lighting",
 });
