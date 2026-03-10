@@ -22,7 +22,7 @@ export const bathroomHumidity = analogHumiditySensor({
     device: "sauna_temp_1",
     pin: 2,
     description: "Humidity sensor in the bathroom ceiling",
-    hidden: true,
+
 });
 
 export const bathroomPir = inputPir({
@@ -30,7 +30,7 @@ export const bathroomPir = inputPir({
     device: "bathroom_io8_1",
     pin: 0,
     description: "PIR sensor detecting presence in the bathroom",
-    hidden: true,
+
 });
 
 export const bathroomVentOverride = inputButtonToggle({
@@ -38,7 +38,7 @@ export const bathroomVentOverride = inputButtonToggle({
     device: "bathroom_io8_1",
     pin: 1,
     description: "Manual override switch for bathroom ventilation",
-    hidden: true,
+
 });
 
 export const bathroomVentIndicator = outputIndicatorLight({
@@ -46,7 +46,7 @@ export const bathroomVentIndicator = outputIndicatorLight({
     device: "bathroom_io8_1",
     pin: 0,
     description: "LED indicator showing ventilation is active",
-    hidden: true,
+
 });
 
 export const bathroomButtonVent = inputButtonPush({
@@ -54,7 +54,7 @@ export const bathroomButtonVent = inputButtonPush({
     device: "bathroom_io8_1",
     pin: 3,
     description: "Push button to manually start/stop bathroom ventilation",
-    hidden: false,
+
 });
 
 export const bathroomVentTimer = timerResource({

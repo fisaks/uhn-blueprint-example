@@ -10,7 +10,7 @@ export const energyMeterPowerA = energyMeterPower({
     device: "energy_meter_1",
     pin: 1024,
     description: "Active power on phase A",
-    hidden: true,
+
 });
 
 export const energyMeterPowerB = energyMeterPower({
@@ -18,7 +18,7 @@ export const energyMeterPowerB = energyMeterPower({
     device: "energy_meter_1",
     pin: 1044,
     description: "Active power on phase B",
-    hidden: true,
+
 });
 
 export const energyMeterPowerC = energyMeterPower({
@@ -26,7 +26,7 @@ export const energyMeterPowerC = energyMeterPower({
     device: "energy_meter_1",
     pin: 1064,
     description: "Active power on phase C",
-    hidden: true,
+
 });
 
 // Current (A) — pins 1022, 1042, 1062
@@ -35,7 +35,7 @@ export const energyMeterCurrentA = energyMeterCurrent({
     device: "energy_meter_1",
     pin: 1022,
     description: "Current on phase A",
-    hidden: true,
+
 });
 
 export const energyMeterCurrentB = energyMeterCurrent({
@@ -43,7 +43,7 @@ export const energyMeterCurrentB = energyMeterCurrent({
     device: "energy_meter_1",
     pin: 1042,
     description: "Current on phase B",
-    hidden: true,
+
 });
 
 export const energyMeterCurrentC = energyMeterCurrent({
@@ -51,7 +51,7 @@ export const energyMeterCurrentC = energyMeterCurrent({
     device: "energy_meter_1",
     pin: 1062,
     description: "Current on phase C",
-    hidden: true,
+
 });
 
 export const energyMeterTotal = complexResource({
