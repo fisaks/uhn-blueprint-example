@@ -5,6 +5,8 @@
 
   "scripts": {
     "build": "uhn-blueprint build",
+    "upload": "uhn-blueprint upload",
+    "bupload": "uhn-blueprint bupload",
     "typecheck": "tsc --noEmit",
     "sourcemaps": "tsc -p tsconfig.blueprint.json"
   },
