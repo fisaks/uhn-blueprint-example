@@ -5,6 +5,7 @@ import { toiletLightMirror, toiletPanelButtonBottomLeft, toiletPirSensor, toilet
 const toiletPirStartsMirrorTimer = rule({})
     .onActivated(toiletPirSensor)
     .suppress(seconds(10))
+    .actionHints(toiletTimer)
     .run((ctx) => {
         ctx.logger.info("Toilet PIR activated - turning on toilet mirror light for 30 sec");
         ctx.timers.start(toiletTimer, seconds(30), "restart");
@@ -14,6 +15,7 @@ const toiletPirStartsMirrorTimer = rule({})
 const turnOnToiletMirrorLight = rule({})
     .onTimerActivated(toiletTimer)
     .onTap(toiletPanelButtonBottomLeft)
+    .actionHints(toiletLightMirror)
     .run((ctx) => {
         if (ctx.runtime.getState(toiletLightMirror)) {//alreadyRunning
             return [];
@@ -30,6 +32,7 @@ const turnOnToiletMirrorLight = rule({})
 const turnOffToiletMirrorLight = rule({})
     .onTimerDeactivated(toiletTimer)
     .onTap(toiletPanelButtonBottomLeft)
+    .actionHints(toiletLightMirror, toiletTimer)
     .run((ctx) => {
         if (!ctx.runtime.getState(toiletLightMirror)) {
             return [];

@@ -19,6 +19,7 @@ import {
 
 const kitchenCountertopLightToggle = rule({ description: "Toggle countertop lights with timer on button tap" })
     .onTap(kitchenPanelButtonCountertopTopRow)
+    .actionHints(kitchenLightCountertops, kitchenCountertopTimer)
     .executionTarget("master")
     .run((ctx) => {
         const isOn = ctx.runtime.getState(kitchenLightCountertops);
@@ -37,6 +38,7 @@ const kitchenCountertopLightToggle = rule({ description: "Toggle countertop ligh
 
 const kitchenCountertopTimerExpired = rule({ description: "Turn off countertop lights when timer expires" })
     .onTimerDeactivated(kitchenCountertopTimer)
+    .actionHints(kitchenLightCountertops)
     .executionTarget("master")
     .run((ctx) => {
         ctx.logger.info("Kitchen countertop timer expired — turning off lights");
@@ -50,6 +52,7 @@ const kitchenCountertopTimerExpired = rule({ description: "Turn off countertop l
 const kitchenCeilingLightToggle = rule({ description: "Toggle ceiling light with timer on wall button tap" })
     .onTap(kitchenPanelButtonWallEdgeTopLeft)
     .onTap(kitchenPanelButtonWallEdgeTopRight)
+    .actionHints(kitchenLightCeiling, kitchenCeilingTimer)
     .executionTarget("master")
     .run((ctx) => {
         const isOn = ctx.runtime.getState(kitchenLightCeiling);
@@ -68,6 +71,7 @@ const kitchenCeilingLightToggle = rule({ description: "Toggle ceiling light with
 
 const kitchenCeilingPirRestart = rule({ description: "PIR activity restarts ceiling light timer if light is on" })
     .onActivated(kitchenPir)
+    .actionHints(kitchenCeilingTimer)
     .executionTarget("master")
     .run((ctx) => {
         if (!ctx.runtime.getState(kitchenLightCeiling)) return [];
@@ -78,6 +82,7 @@ const kitchenCeilingPirRestart = rule({ description: "PIR activity restarts ceil
 
 const kitchenCeilingTimerExpired = rule({ description: "Turn off ceiling light when timer expires" })
     .onTimerDeactivated(kitchenCeilingTimer)
+    .actionHints(kitchenLightCeiling)
     .executionTarget("master")
     .run((ctx) => {
         ctx.logger.info("Kitchen ceiling timer expired — turning off light");

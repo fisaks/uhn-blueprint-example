@@ -19,6 +19,7 @@ import {
 // Uses "startOnce" so repeated threshold crossings don't restart the timer.
 const bathroomHumidityStartsVent = rule({ description: "Start ventilation when humidity exceeds 70%" })
     .onAbove(bathroomHumidity, 70, { hysteresis: 5 })
+    .actionHints(bathroomFanSpeed, bathroomVentTimer)
     .run((ctx) => {
         const result = ctx.timers.start(bathroomVentTimer, minutes(5), "startOnce");
         if (result === "alreadyRunning") {
@@ -34,6 +35,7 @@ const bathroomHumidityStartsVent = rule({ description: "Start ventilation when h
 // --- Timer activation: turn on indicator ---
 const bathroomVentTimerActivated = rule({ description: "Show indicator when ventilation timer starts" })
     .onTimerActivated(bathroomVentTimer)
+    .actionHints(bathroomVentIndicator)
     .run((ctx) => {
         ctx.logger.info("Ventilation timer activated — indicator on");
         return ruleActions([
@@ -44,6 +46,7 @@ const bathroomVentTimerActivated = rule({ description: "Show indicator when vent
 // --- Timer expiry: turn off fan and indicator ---
 const bathroomVentTimerExpired = rule({ description: "Stop ventilation when timer expires" })
     .onTimerDeactivated(bathroomVentTimer)
+    .actionHints(bathroomFanSpeed, bathroomVentIndicator)
     .run((ctx) => {
         ctx.logger.info("Ventilation timer expired — fan and indicator off");
         return ruleActions([
@@ -57,6 +60,7 @@ const bathroomVentTimerExpired = rule({ description: "Stop ventilation when time
 const bathroomManualVentToggle = rule({ description: "Toggle ventilation with button tap" })
     .onTap(bathroomButtonVent)
     .onTap(bathroomVentilation)
+    .actionHints(bathroomFanSpeed, bathroomVentTimer)
     .run((ctx) => {
         if (ctx.timers.isRunning(bathroomVentTimer)) {
             ctx.logger.info("Manual stop — clearing ventilation timer");

@@ -5,6 +5,7 @@ import { toiletButtonToggle } from "../resources/toilet";
 
 const emitSignalTest = rule({ description: "Emit signal test on bottom left button tap" })
     .onTap(kitchenPanelButtonWallEdgeBottomLeft)
+    .actionHints(toiletButtonToggle)
     .run((ctx) => {
         return ruleActions([
             {

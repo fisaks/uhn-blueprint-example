@@ -5,6 +5,7 @@ import { kitchenPanelButtonWallEdgeTopLeft, kitchenSocketForToaster } from "../r
 
 const kitchenToasterSocket = rule({ description: "Toggle kitchen toaster socket on long press of top left button on wall edge panel" })
     .onLongPress(kitchenPanelButtonWallEdgeTopLeft, seconds(2))
+    .actionHints(kitchenSocketForToaster)
     .executionTarget("master")
     .run((ctx) => {
         ctx.logger.info("Long press detected on kitchen panel top left button");
