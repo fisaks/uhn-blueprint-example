@@ -67,6 +67,7 @@ Blueprints run in a sandbox, not from `src/` directly. Debug workflow:
 - Scenes use prefix: `sceneKitchenEvening`
 - Locations use prefix: `locationKitchen`
 - Each entity has a descriptive `description` string
+- Entities can have optional `keywords` for command palette / voice search (synonyms and informal names not already in name/description/ID)
 - Rules import resources directly from `../resources/` files
 - Device/pin types are narrowly constrained via unions in `factory.ts`
 - Commit messages use conventional commits (`feat:`, `fix:`, etc.)

@@ -20,6 +20,7 @@ export const viewKitchenCeilingLight = view({
     },
     icon: "lighting:ceiling",
     description: "Kitchen ceiling light with auto-off timer and motion indicator",
+    keywords: ["overhead", "room", "main"],
 });
 
 export const viewKitchenCountertopLight = view({
@@ -32,4 +33,5 @@ export const viewKitchenCountertopLight = view({
     },
     icon: "lighting:bulb",
     description: "Kitchen countertop lights with auto-off timer",
+    keywords: ["worktop"],
 });

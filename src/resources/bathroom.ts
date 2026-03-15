@@ -9,6 +9,7 @@ export const bathroomDimmerCeiling = analogDimmer({
     pin: 0,
     defaultOnValue: 70,
     description: "Dimmable ceiling light in the bathroom",
+    keywords: ["mood", "main"],
 });
 
 export const bathroomFanSpeed = analogDimmer({
@@ -17,6 +18,7 @@ export const bathroomFanSpeed = analogDimmer({
     pin: 1,
     defaultOnValue: 60,
     description: "Ventilation fan speed control (0-100%)",
+    keywords: ["exhaust", "extractor"],
 });
 
 export const bathroomHumidity = analogHumiditySensor({

@@ -7,6 +7,7 @@ export const kitchenLightCeiling = outputLight({
     pin: 0,
     icon: "lighting:ceiling",
     description: "Main ceiling light in the kitchen area",
+    keywords: ["overhead", "room", "main"],
 });
 
 export const kitchenLightDiningTable = outputLight({
@@ -35,6 +36,7 @@ export const kitchenSocketCoffeeMachine = outputSocket({
     device: "kitchen_io8_1",
     pin: 4,
     description: "Socket on the right side of the main kitchen countertop for the coffee machine",
+    keywords: ["espresso", "brew"],
 });
 
 export const kitchenLightCountertops = outputLight({
@@ -42,6 +44,7 @@ export const kitchenLightCountertops = outputLight({
     device: "kitchen_io8_1",
     pin: 5,
     description: "Main power to light tubes under the cabinets above kitchen countertops",
+    keywords: ["worktop", "task lighting"],
 });
 
 export const kitchenSocketUnderWindow = outputSocket({

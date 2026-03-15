@@ -20,6 +20,7 @@ export const sceneKitchenLightsOff = scene({
 export const sceneKitchenEvening = scene({
     name: "Kitchen Evening",
     description: "Cozy evening lighting with dining table and night light",
+    keywords: ["dinner", "romantic"],
     icon: "scene:night",
     commands: [
         { type: "setDigitalOutput", resource: kitchenLightCeiling, value: false },
