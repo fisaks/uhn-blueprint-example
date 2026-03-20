@@ -12,10 +12,10 @@ import {
 // Project-local strong literal unions
 export type Edge = "edge1"
 export type Host = Edge | "master"
-export type OutputDevice = "kitchen_io8_1" | "kitchen_relay8_1" | "toilet_io8_1" | "bathroom_io8_1" | "ihc2"
+export type OutputDevice = "kitchen_io8_1" | "kitchen_relay8_1" | "toilet_io8_1" | "bathroom_io8_1" | "ihc2" | "milight-toilet"
 export type InputDevice = "kitchen_io8_1" | "toilet_io8_1" | "bathroom_io8_1" | "ihc2"
 export type AnalogInputDevice = "sauna_temp_1" | "energy_meter_1"
-export type AnalogOutputDevice = "bathroom_dimmer_1" | "ihc2"
+export type AnalogOutputDevice = "bathroom_dimmer_1" | "ihc2" | "milight-toilet"
 export type Pin = number;
 export type AnalogPin = number;
 export type EnergyMeterPin =

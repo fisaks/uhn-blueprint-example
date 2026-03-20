@@ -1,4 +1,8 @@
-import { timer } from "@uhn/blueprint";
+import {
+    timer,
+    milightPower, milightNightMode, milightWhiteMode, milightSpeedUp, milightSpeedDown,
+    milightBrightness, milightColorTemp, milightHue, milightSaturation, milightMode,
+} from "@uhn/blueprint";
 import { inputButtonPush, inputButtonToggle, inputLightSensor, inputPir, outputIndicatorLight, outputLight, outputRelay } from "../factory/factory";
 
 export const toiletLightCeiling = outputLight({
@@ -92,3 +96,46 @@ export const toiletLightSensor = inputLightSensor({
 
 
 export const toiletTimer = timer({ host: "edge1" })
+
+// Mi-Light FUT069 RGB+CCT ceiling downlight (zone 4 on iBox2)
+// Pins assigned automatically by milight factories
+export const toiletMilightCeilingPower = milightPower({
+    edge: "edge1", device: "milight-toilet",
+    description: "Mi-Light FUT069 RGB+CCT ceiling downlight power",
+});
+export const toiletMilightCeilingNightMode = milightNightMode({
+    edge: "edge1", device: "milight-toilet",
+    description: "Mi-Light ceiling downlight night mode (very dim)",
+});
+export const toiletMilightCeilingWhiteMode = milightWhiteMode({
+    edge: "edge1", device: "milight-toilet",
+    description: "Mi-Light ceiling downlight white mode (RGB off, CCT only)",
+});
+export const toiletMilightCeilingSpeedUp = milightSpeedUp({
+    edge: "edge1", device: "milight-toilet",
+    description: "Mi-Light ceiling downlight effect speed increase",
+});
+export const toiletMilightCeilingSpeedDown = milightSpeedDown({
+    edge: "edge1", device: "milight-toilet",
+    description: "Mi-Light ceiling downlight effect speed decrease",
+});
+export const toiletMilightCeilingBrightness = milightBrightness({
+    edge: "edge1", device: "milight-toilet",
+    description: "Mi-Light ceiling downlight brightness (0-100%)",
+});
+export const toiletMilightCeilingColorTemp = milightColorTemp({
+    edge: "edge1", device: "milight-toilet",
+    description: "Mi-Light ceiling downlight color temperature (0=warm, 100=cool)",
+});
+export const toiletMilightCeilingHue = milightHue({
+    edge: "edge1", device: "milight-toilet",
+    description: "Mi-Light ceiling downlight hue (0-255, enters color mode)",
+});
+export const toiletMilightCeilingSaturation = milightSaturation({
+    edge: "edge1", device: "milight-toilet",
+    description: "Mi-Light ceiling downlight saturation (0=white, 100=vivid color)",
+});
+export const toiletMilightCeilingMode = milightMode({
+    edge: "edge1", device: "milight-toilet",
+    description: "Mi-Light ceiling downlight effect mode (1-9)",
+});
