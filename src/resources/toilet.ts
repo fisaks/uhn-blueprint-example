@@ -153,7 +153,7 @@ export const toiletMilightCeiling = complexResource({
     host: "master",
     description: "Mi-Light RGB+CCT ceiling downlight (mains relay + soft power)",
     computeFn: computeAllOn,
-    computeResources: [toiletLightCeiling, toiletMilightCeilingPower],
+    computeResources: [toiletLightCeiling],
     subResources: [
         { resource: toiletMilightCeilingPower, label: "Power", group: "Power" },
         { resource: toiletMilightCeilingNightMode, label: "Night Mode" },
