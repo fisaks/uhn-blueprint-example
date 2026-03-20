@@ -1,13 +1,40 @@
 import { view } from "@uhn/blueprint";
 import {
+    toiletMilightCeiling,
     toiletMilightCeilingBrightness,
+    toiletMilightCeilingColorTemp,
+    toiletMilightCeilingHue,
+    toiletMilightCeilingMode,
+    toiletMilightCeilingNightMode,
     toiletMilightCeilingPower,
+    toiletMilightCeilingSaturation,
+    toiletMilightCeilingSpeedDown,
+    toiletMilightCeilingSpeedUp,
+    toiletMilightCeilingWhiteMode,
+    toiletMilightColor,
+    toiletMilightWhite,
+    toiletPanelButtonTopLeft,
 } from "../resources/toilet";
 
 export const viewToiletMilightCeiling = view({
-    stateFrom: [{ resource: toiletMilightCeilingPower }],
-    command: { resource: toiletMilightCeilingBrightness, type: "setAnalog", min: 0, max: 100, step: 5, unit: "%", defaultOnValue: 70 },
+    stateFrom: [{ resource: toiletMilightCeiling }],
+    command: { resource: toiletPanelButtonTopLeft, type: "tap" },
+    controls: [
+        { resource: toiletMilightCeilingPower, label: "Power", group: "Power" },
+        { resource: toiletMilightCeilingNightMode, label: "Night Mode" },
+        { resource: toiletMilightCeilingWhiteMode, label: "White Mode", group: "Light" },
+        { resource: toiletMilightCeilingBrightness, label: "Brightness", inline: true },
+        { resource: toiletMilightCeilingColorTemp, label: "Color Temp" },
+        { resource: toiletMilightColor, label: "Color Mode", group: "Color" },
+        { resource: toiletMilightWhite, label: "White Mode" },
+        { resource: toiletMilightCeilingHue, label: "Hue" },
+        { resource: toiletMilightCeilingSaturation, label: "Saturation" },
+        { resource: toiletMilightCeilingMode, label: "Effect Mode", group: "Effects" },
+        { resource: toiletMilightCeilingSpeedUp, label: "Speed Up" },
+        { resource: toiletMilightCeilingSpeedDown, label: "Speed Down" },
+    ],
+    name: "Toilet Ceiling Light",
     icon: "lighting:ceiling",
     description: "Mi-Light RGB+CCT ceiling downlight with brightness control",
-    keywords: ["milight", "rgb", "downlight"],
+    keywords: ["milight", "rgb", "downlight", "main"],
 });
