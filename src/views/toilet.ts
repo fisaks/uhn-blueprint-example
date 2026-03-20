@@ -12,6 +12,7 @@ import {
     toiletMilightCeilingSpeedUp,
     toiletMilightCeilingWhiteMode,
     toiletMilightColor,
+    toiletMilightColorPicker,
     toiletMilightWhite,
     toiletPanelButtonTopLeft,
 } from "../resources/toilet";
@@ -25,7 +26,8 @@ export const viewToiletMilightCeiling = view({
         { resource: toiletMilightCeilingWhiteMode, label: "White Mode", group: "Light" },
         { resource: toiletMilightCeilingBrightness, label: "Brightness", inline: true },
         { resource: toiletMilightCeilingColorTemp, label: "Color Temp" },
-        { resource: toiletMilightColor, label: "Color Mode", group: "Color" },
+        { resource: toiletMilightColorPicker, label: "Color Picker", group: "Color" },
+        { resource: toiletMilightColor, label: "Color Mode" },
         { resource: toiletMilightWhite, label: "White Mode" },
         { resource: toiletMilightCeilingHue, label: "Hue" },
         { resource: toiletMilightCeilingSaturation, label: "Saturation" },

@@ -5,6 +5,7 @@ import {
     toiletMilightCeilingSaturation,
     toiletMilightCeilingWhiteMode,
     toiletMilightColor,
+    toiletMilightColorPicker,
     toiletMilightWhite,
 } from "../resources/toilet";
 
@@ -18,6 +19,18 @@ export const toiletMilightColorRule = rule({ description: "Mi-Light color mode: 
         return ruleActions([
             { type: "setAnalogOutput", resource: toiletMilightCeilingSaturation, value: 100 },
             { type: "setAnalogOutput", resource: toiletMilightCeilingHue, value: hue },
+        ]);
+    });
+
+// When the color picker dropdown changes → forward value to color slider (triggers toiletMilightColorRule)
+export const toiletMilightColorPickerRule = rule({ description: "Mi-Light color picker: forwards preset color to color slider" })
+    .onChanged(toiletMilightColorPicker)
+    .actionHints(toiletMilightColor)
+    .run((ctx) => {
+        const hue = ctx.runtime.getState(toiletMilightColorPicker) as number;
+        ctx.logger.info("Color picker: hue=" + hue);
+        return ruleActions([
+            { type: "setAnalogOutput", resource: toiletMilightColor, value: hue },
         ]);
     });
 

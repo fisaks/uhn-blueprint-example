@@ -1,5 +1,5 @@
 import {
-    computeAllOn, timer,
+    computeAllOn, timer, MilightColor,
     milightPower, milightNightMode, milightWhiteMode, milightSpeedUp, milightSpeedDown,
     milightBrightness, milightColorTemp, milightHue, milightSaturation, milightMode,
 } from "@uhn/blueprint";
@@ -171,6 +171,18 @@ export const toiletMilightCeiling = complexResource({
 export const toiletMilightColor = virtualAnalog({
     host: "master", min: 0, max: 255, step: 1,
     description: "Mi-Light color mode (sets hue + saturation to vivid)",
+});
+export const toiletMilightColorPicker = virtualAnalog({
+    host: "master", min: 0, max: 255, step: 1,
+    description: "Mi-Light color picker — preset FUT069 colors forwarded to color slider",
+    options: [
+        { value: MilightColor.Red, label: "Red" },
+        { value: MilightColor.Orange, label: "Orange" },
+        { value: MilightColor.Yellow, label: "Yellow" },
+        { value: MilightColor.Green, label: "Green" },
+        { value: MilightColor.Blue, label: "Blue" },
+        { value: MilightColor.Magenta, label: "Magenta" },
+    ],
 });
 export const toiletMilightWhite = virtualAnalog({
     host: "master", min: 0, max: 100, step: 1, unit: "%",
