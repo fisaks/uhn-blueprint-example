@@ -12,12 +12,12 @@ import {
 // Project-local strong literal unions
 export type Edge = "edge1"
 export type Host = Edge | "master"
-export type OutputDevice = "kitchen_io8_1" | "kitchen_relay8_1" | "toilet_io8_1" | "bathroom_io8_1" | "ihc2" | "milight-toilet"
+export type OutputDevice = "kitchen_io8_1" | "kitchen_relay8_1" | "toilet_io8_1" | "bathroom_io8_1" | "ihc2" | "milight-toilet" | "socket_plug_1"
 export type InputDevice = "kitchen_io8_1" | "toilet_io8_1" | "bathroom_io8_1" | "ihc2"
-export type AnalogInputDevice = "sauna_temp_1" | "energy_meter_1"
+export type AnalogInputDevice = "sauna_temp_1" | "energy_meter_1" | "kitchen_temperature_display" | "outdoor_temperature" | "socket_plug_1"
 export type AnalogOutputDevice = "bathroom_dimmer_1" | "ihc2" | "milight-toilet"
-export type Pin = number;
-export type AnalogPin = number;
+export type Pin = number | string;
+export type AnalogPin = number | string;
 export type EnergyMeterPin =
     | 1000 | 1001 | 1002 | 1003 | 1004 | 1005 | 1006 | 1007 | 1008 | 1009
     | 1010 | 1011 | 1012 | 1013 | 1014 | 1015 | 1016 | 1017 | 1018 | 1019
@@ -123,6 +123,28 @@ export function analogPowerSensor(props: AnalogInputProps) {
         unit: "W",
         ...props,
         analogInputKind: "power",
+    });
+}
+export function analogVoltageSensor(props: AnalogInputProps) {
+    return analogInput<"voltage", Edge, AnalogInputDevice, AnalogPin>({
+        unit: "V",
+        ...props,
+        analogInputKind: "voltage",
+    });
+}
+export function analogCurrentSensor(props: AnalogInputProps) {
+    return analogInput<"current", Edge, AnalogInputDevice, AnalogPin>({
+        unit: "A",
+        ...props,
+        analogInputKind: "current",
+    });
+}
+export function analogBatterySensor(props: AnalogInputProps) {
+    return analogInput<"battery", Edge, AnalogInputDevice, AnalogPin>({
+        unit: "%",
+        decimalPrecision: 0,
+        ...props,
+        analogInputKind: "battery",
     });
 }
 export function analogDimmer(props: AnalogOutputProps) {
