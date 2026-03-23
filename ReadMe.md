@@ -93,6 +93,37 @@ then the link should be updated accordingly.
 
 ---
 
+## Zigbee Device Import
+
+Import Zigbee2MQTT devices as blueprint resources and views using `@uhn/blueprint-tools`:
+
+```bash
+# Import from real Z2M (default: tcp://localhost:1883, topic: zigbee2mqtt)
+pnpm z2m-import
+
+# Import from Z2M sim
+pnpm z2m-import -- -t zigbee2mqtt-sim
+
+# Auto-export all resources
+pnpm z2m-import -- -x
+
+# Force regenerate missing files
+pnpm z2m-import -- -f
+```
+
+This generates:
+- `src/factory/zigbee-factory-{edge}.ts` — type-safe factory with device unions (always regenerated)
+- `src/resources/{device}-zigbee.ts` — resource consts (not exported by default, add `export` to activate or use `-x`)
+- `src/views/{device}-zigbee.ts` — auto-wired views (exported)
+- `.z2m-data/{device}.json` — raw Z2M device data (gitignored, for reference)
+- `.z2m-data/edge-config-{edge}.json` — edge config snippet (copy into edge config)
+- `.z2m-data/factory-mapping.json` — configurable factory mapping (edit to use project factories)
+- `.z2m-data/import-history.json` — tracks imported devices
+
+Re-run safe — existing files are never overwritten. Edit `.z2m-data/factory-mapping.json` to redirect resource generation to your project's factories instead of the generated zigbee factory.
+
+---
+
 ## Debugging Blueprints in the UHN Sandbox
 
 Blueprints are executed **inside the UHN sandbox**, not directly from the original `src/` directory.

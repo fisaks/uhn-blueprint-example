@@ -12,6 +12,9 @@ importers:
         specifier: link:../uxp/packages/uhn-blueprint/
         version: link:../uxp/packages/uhn-blueprint
     devDependencies:
+      '@uhn/blueprint-tools':
+        specifier: link:../uxp/packages/uhn-blueprint-tools/
+        version: link:../uxp/packages/uhn-blueprint-tools
       tsx:
         specifier: ^4.20.6
         version: 4.20.6

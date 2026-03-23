@@ -4,3 +4,4 @@ dist
 node_modules
 .history
 out
+.z2m/data

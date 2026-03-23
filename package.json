@@ -8,12 +8,14 @@
     "upload": "uhn-blueprint upload",
     "bupload": "uhn-blueprint bupload",
     "typecheck": "tsc --noEmit",
-    "sourcemaps": "tsc -p tsconfig.blueprint.json"
+    "sourcemaps": "tsc -p tsconfig.blueprint.json",
+    "z2m-import": "uhn-blueprint-tools z2m-import"
   },
   "dependencies": {
     "@uhn/blueprint": "link:../uxp/packages/uhn-blueprint/"
   },
   "devDependencies": {
+    "@uhn/blueprint-tools": "link:../uxp/packages/uhn-blueprint-tools/",
     "tsx": "^4.20.6",
     "typescript": "^5.9.3"
   }

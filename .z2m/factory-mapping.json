@@ -1,0 +1,50 @@
+{
+    "digitalOutput.socket": {
+        "factory": "outputSocket",
+        "import": "../factory/factory"
+    },
+    "digitalOutput.light": {
+        "factory": "outputLight",
+        "import": "../factory/factory"
+    },
+    "digitalOutput.relay": {
+        "factory": "outputRelay",
+        "import": "../factory/factory"
+    },
+    "analogInput.temperature": {
+        "factory": "analogTemperatureSensor",
+        "import": "../factory/factory"
+    },
+    "analogInput.humidity": {
+        "factory": "analogHumiditySensor",
+        "import": "../factory/factory"
+    },
+    "analogInput.power": {
+        "factory": "analogPowerSensor",
+        "import": "../factory/factory"
+    },
+    "analogInput.voltage": {
+        "factory": "analogVoltageSensor",
+        "import": "../factory/factory"
+    },
+    "analogInput.current": {
+        "factory": "analogCurrentSensor",
+        "import": "../factory/factory"
+    },
+    "analogInput.battery": {
+        "factory": "analogBatterySensor",
+        "import": "../factory/factory"
+    },
+    "analogInput.energy": {
+        "factory": "zigbeeEnergySensor",
+        "import": "../factory/zigbee-factory-edge1"
+    },
+    "analogOutput.dimmer": {
+        "factory": "analogDimmer",
+        "import": "../factory/factory"
+    },
+    "analogOutput.colorTemp": {
+        "factory": "zigbeeColorTemp",
+        "import": "../factory/zigbee-factory-edge1"
+    }
+}
