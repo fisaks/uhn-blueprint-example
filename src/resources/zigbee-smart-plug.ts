@@ -5,29 +5,29 @@ import {
     analogCurrentSensor,
 } from "../factory/factory";
 
-// S60ZBTPF — Smart plug (Z2M: socket_plug_1)
+// S60ZBTPF — Smart plug (Z2M: portable-socket-plug)
 export const socketPlug1State = outputSocket({
-    device: "socket_plug_1",
+    device: "portable-socket-plug",
     pin: "state",
     edge: "edge1",
 });
 
 export const socketPlug1Power = analogPowerSensor({
-    device: "socket_plug_1",
+    device: "portable-socket-plug",
     pin: "power",
     edge: "edge1",
     decimalPrecision: 0,
 });
 
 export const socketPlug1Voltage = analogVoltageSensor({
-    device: "socket_plug_1",
+    device: "portable-socket-plug",
     pin: "voltage",
     edge: "edge1",
     decimalPrecision: 0,
 });
 
 export const socketPlug1Current = analogCurrentSensor({
-    device: "socket_plug_1",
+    device: "portable-socket-plug",
     pin: "current",
     edge: "edge1",
     decimalPrecision: 2,

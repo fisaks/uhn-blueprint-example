@@ -16,6 +16,7 @@ For the full API reference, see the [Blueprint Authoring Guide](https://github.c
 pnpm build          # Build blueprint (creates dist/blueprint-tmp/ and dist/blueprint.zip)
 pnpm typecheck      # Type-check without emitting (tsc --noEmit)
 pnpm sourcemaps     # Generate source maps from transformed sources (for debugging)
+pnpm z2m-import     # Import Zigbee2MQTT devices as resources/views
 ```
 
 ## Architecture
