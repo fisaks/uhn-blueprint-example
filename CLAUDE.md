@@ -33,19 +33,21 @@ Six-layer structure under `src/`:
 
 - **`locations/`** - Location definitions created with `location()` from `@uhn/blueprint`. Locations group resources, views, and scenes into room/area containers for the UI. Items are auto-detected by shape (view has `stateFrom`, scene has `commands`, else resource).
 
-- **`rules/`** - Automation rules created with `rule()` from `@uhn/blueprint`. Rules use a fluent API chaining triggers followed by `.run(ctx => ...)`. The run callback receives a context with `ctx.runtime.getState()`, `ctx.timers`, `ctx.mute`, `ctx.logger`, and `ctx.cause`. Actions are returned via `ruleActions([...])`.
+- **`rules/`** - Automation rules created with `rule()` from `@uhn/blueprint`. Rules use a fluent API chaining triggers followed by `.run(ctx => ...)`. The run callback receives a context with `ctx.runtime.getState()`, `ctx.timers`, `ctx.mute`, `ctx.logger`, and `ctx.cause`. Actions are constructed via the `ruleAction()` factory.
 
 ### Trigger types
 - State: `.onActivated()`, `.onDeactivated()`, `.onChanged()` (with optional `{ hysteresis }`)
 - Threshold: `.onAbove(resource, threshold, opts)`, `.onBelow(resource, threshold, opts)`
 - Gesture: `.onTap()`, `.onLongPress(resource, durationMs)`
+- Action: `.onAction(resource, action)` - actionInput events (Zigbee buttons)
 - Timer: `.onTimerActivated()`, `.onTimerDeactivated()`
 
-### Action types
-- `{ type: "setDigitalOutput", resource, value }` - control digital output
-- `{ type: "setAnalogOutput", resource, value }` - set analog value
-- `{ type: "emitSignal", resource, value }` - emit signal on input
-- `{ type: "activateScene", scene }` - activate a scene (expanded to individual commands at runtime)
+### Action types (via `ruleAction()` factory)
+- `ruleAction({ type: "setDigitalOutput", resource, value })` - control digital output
+- `ruleAction({ type: "setAnalogOutput", resource, value })` - set analog value
+- `ruleAction({ type: "emitSignal", resource, value })` - emit signal on input
+- `ruleAction({ type: "emitAction", resource, action })` - emit action event for rule chaining (depth-limited)
+- `ruleAction({ type: "activateScene", scene })` - activate a scene (expanded to individual commands at runtime)
 
 ### Scheduling
 - `.suppress(ms)` - ignore triggers for duration after trigger event

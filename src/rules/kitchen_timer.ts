@@ -3,7 +3,7 @@
 // Both run on master (cross-edge timer flow: master dispatches timerStart → edge runs timer
 // → edge publishes state via MQTT → master receives state).
 
-import { minutes, rule, ruleActions } from "@uhn/blueprint";
+import { minutes, rule, ruleAction } from "@uhn/blueprint";
 import {
     kitchenCeilingTimer,
     kitchenCountertopTimer,
@@ -25,15 +25,15 @@ const kitchenCountertopLightToggle = rule({ description: "Toggle countertop ligh
         const isOn = ctx.runtime.getState(kitchenLightCountertops);
         if (isOn) {
             ctx.timers.clear(kitchenCountertopTimer);
-            return ruleActions([
-                { type: "setDigitalOutput", resource: kitchenLightCountertops, value: false },
-            ]);
+            return [
+                ruleAction({ type: "setDigitalOutput", resource: kitchenLightCountertops, value: false }),
+            ];
         }
         ctx.logger.info("Starting kitchen countertop timer for 1 minute");
         ctx.timers.start(kitchenCountertopTimer, minutes(1), "restart");
-        return ruleActions([
-            { type: "setDigitalOutput", resource: kitchenLightCountertops, value: true },
-        ]);
+        return [
+            ruleAction({ type: "setDigitalOutput", resource: kitchenLightCountertops, value: true }),
+        ];
     });
 
 const kitchenCountertopTimerExpired = rule({ description: "Turn off countertop lights when timer expires" })
@@ -42,9 +42,9 @@ const kitchenCountertopTimerExpired = rule({ description: "Turn off countertop l
     .executionTarget("master")
     .run((ctx) => {
         ctx.logger.info("Kitchen countertop timer expired — turning off lights");
-        return ruleActions([
-            { type: "setDigitalOutput", resource: kitchenLightCountertops, value: false },
-        ]);
+        return [
+            ruleAction({ type: "setDigitalOutput", resource: kitchenLightCountertops, value: false }),
+        ];
     });
 
 // --- Ceiling light timer ---
@@ -58,15 +58,15 @@ const kitchenCeilingLightToggle = rule({ description: "Toggle ceiling light with
         const isOn = ctx.runtime.getState(kitchenLightCeiling);
         if (isOn) {
             ctx.timers.clear(kitchenCeilingTimer);
-            return ruleActions([
-                { type: "setDigitalOutput", resource: kitchenLightCeiling, value: false },
-            ]);
+            return [
+                ruleAction({ type: "setDigitalOutput", resource: kitchenLightCeiling, value: false }),
+            ];
         }
         ctx.logger.info("Starting kitchen ceiling timer for 5 minutes");
         ctx.timers.start(kitchenCeilingTimer, minutes(5), "restart");
-        return ruleActions([
-            { type: "setDigitalOutput", resource: kitchenLightCeiling, value: true },
-        ]);
+        return [
+            ruleAction({ type: "setDigitalOutput", resource: kitchenLightCeiling, value: true }),
+        ];
     });
 
 const kitchenCeilingPirRestart = rule({ description: "PIR activity restarts ceiling light timer if light is on" })
@@ -86,7 +86,7 @@ const kitchenCeilingTimerExpired = rule({ description: "Turn off ceiling light w
     .executionTarget("master")
     .run((ctx) => {
         ctx.logger.info("Kitchen ceiling timer expired — turning off light");
-        return ruleActions([
-            { type: "setDigitalOutput", resource: kitchenLightCeiling, value: false },
-        ]);
+        return [
+            ruleAction({ type: "setDigitalOutput", resource: kitchenLightCeiling, value: false }),
+        ];
     });

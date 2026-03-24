@@ -1,4 +1,4 @@
-import { rule, ruleActions } from "@uhn/blueprint";
+import { rule, ruleAction } from "@uhn/blueprint";
 import {
     toiletMilightCeilingColorTemp,
     toiletMilightCeilingHue,
@@ -16,10 +16,10 @@ export const toiletMilightColorRule = rule({ description: "Mi-Light color mode: 
     .run((ctx) => {
         const hue = ctx.runtime.getState(toiletMilightColor) as number;
         ctx.logger.info("Color mode: hue=" + hue);
-        return ruleActions([
-            { type: "setAnalogOutput", resource: toiletMilightCeilingSaturation, value: 100 },
-            { type: "setAnalogOutput", resource: toiletMilightCeilingHue, value: hue },
-        ]);
+        return [
+            ruleAction({ type: "setAnalogOutput", resource: toiletMilightCeilingSaturation, value: 100 }),
+            ruleAction({ type: "setAnalogOutput", resource: toiletMilightCeilingHue, value: hue }),
+        ];
     });
 
 // When the color picker dropdown changes → forward value to color slider (triggers toiletMilightColorRule)
@@ -29,9 +29,9 @@ export const toiletMilightColorPickerRule = rule({ description: "Mi-Light color 
     .run((ctx) => {
         const hue = ctx.runtime.getState(toiletMilightColorPicker) as number;
         ctx.logger.info("Color picker: hue=" + hue);
-        return ruleActions([
-            { type: "setAnalogOutput", resource: toiletMilightColor, value: hue },
-        ]);
+        return [
+            ruleAction({ type: "setAnalogOutput", resource: toiletMilightColor, value: hue }),
+        ];
     });
 
 // When the white virtual slider changes → emit white mode signal + set CCT
@@ -41,8 +41,8 @@ export const toiletMilightWhiteRule = rule({ description: "Mi-Light white mode: 
     .run((ctx) => {
         const cct = ctx.runtime.getState(toiletMilightWhite) as number;
         ctx.logger.info("White mode: cct=" + cct);
-        return ruleActions([
-            { type: "emitSignal", resource: toiletMilightCeilingWhiteMode, value: true },
-            { type: "setAnalogOutput", resource: toiletMilightCeilingColorTemp, value: cct },
-        ]);
+        return [
+            ruleAction({ type: "emitSignal", resource: toiletMilightCeilingWhiteMode, value: true }),
+            ruleAction({ type: "setAnalogOutput", resource: toiletMilightCeilingColorTemp, value: cct }),
+        ];
     });

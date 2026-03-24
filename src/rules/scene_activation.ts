@@ -2,7 +2,7 @@
 // Test rules for scene activation — verifies that resolveExecutionTargets
 // traces through scene imports to detect resource dependencies.
 
-import { rule, ruleActions } from "@uhn/blueprint";
+import { rule, ruleAction } from "@uhn/blueprint";
 import { kitchenPanelButtonWallEdgeBottomRight } from "../resources/kitchen";
 import { toiletPanelButtonTopRight } from "../resources/toilet";
 import { sceneKitchenLightsOff, sceneKitchenEvening } from "../scenes/kitchen";
@@ -12,9 +12,9 @@ import { sceneKitchenLightsOff, sceneKitchenEvening } from "../scenes/kitchen";
 const kitchenLightsOffOnBottomRight = rule({ description: "Activate kitchen lights off scene on bottom right button tap" })
     .onTap(kitchenPanelButtonWallEdgeBottomRight)
     .run(() => {
-        return ruleActions([
-            { type: "activateScene", scene: sceneKitchenLightsOff },
-        ]);
+        return [
+            ruleAction({ type: "activateScene", scene: sceneKitchenLightsOff }),
+        ];
     });
 
 // Test case 2: trigger from different room (edge1) + scene import
@@ -22,7 +22,7 @@ const kitchenLightsOffOnBottomRight = rule({ description: "Activate kitchen ligh
 const kitchenEveningFromToilet = rule({ description: "Activate kitchen evening scene from toilet button" })
     .onTap(toiletPanelButtonTopRight)
     .run(() => {
-        return ruleActions([
-            { type: "activateScene", scene: sceneKitchenEvening },
-        ]);
+        return [
+            ruleAction({ type: "activateScene", scene: sceneKitchenEvening }),
+        ];
     });

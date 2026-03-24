@@ -4,7 +4,7 @@
 // setDigitalOutput → SOAP setResourceValue on IHC output → IHC notification
 // → UHN state update.
 
-import { rule, ruleActions } from "@uhn/blueprint";
+import { rule, ruleAction } from "@uhn/blueprint";
 import {
     masterBedroomLightLeftCeiling,
     masterBedroomSwitchLeftCeiling,
@@ -17,7 +17,7 @@ const masterBedroomUnusedToggleLeftLight = rule({ description: "Unused IHC input
     .run((ctx) => {
         const isOn = ctx.runtime.getState(masterBedroomLightLeftCeiling);
         ctx.logger.info("Unused input activated — toggling left ceiling light", { isOn });
-        return ruleActions([
-            { type: "setDigitalOutput", resource: masterBedroomLightLeftCeiling, value: !isOn },
-        ]);
+        return [
+            ruleAction({ type: "setDigitalOutput", resource: masterBedroomLightLeftCeiling, value: !isOn }),
+        ];
     });

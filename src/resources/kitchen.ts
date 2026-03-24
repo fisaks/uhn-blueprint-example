@@ -1,4 +1,4 @@
-import { timer } from "@uhn/blueprint";
+import { actionInput, timer } from "@uhn/blueprint";
 import { inputButtonPush, inputPir, outputIndicatorLight, outputLight, outputSocket, virtualAnalog, virtualButton, virtualToggle } from "../factory/factory";
 
 export const kitchenLightCeiling = outputLight({
@@ -158,6 +158,43 @@ export const kitchenCeilingTimer = timer({
     host: "edge1",
     description: "Timer for kitchen ceiling light auto-off",
 });
+
+type PortableButtonPanelActions = "toggle" | "brightness_up_click" | "brightness_down_click" | "brightness_up_hold" | "brightness_up_release" | "brightness_down_hold" | "brightness_down_release" | "toggle_hold" | "arrow_left_click" | "arrow_left_hold" | "arrow_left_release" | "arrow_right_click" | "arrow_right_hold" | "arrow_right_release";
+
+type PortableButtonPanelMeta = {
+    "toggle": never;
+    "brightness_up_click": never;
+    "brightness_down_click": never;
+    "brightness_up_hold": never;
+    "brightness_up_release": never;
+    "brightness_down_hold": never;
+    "brightness_down_release": never;
+    "toggle_hold": never;
+    "arrow_left_click": never;
+    "arrow_left_hold": never;
+    "arrow_left_release": { action_duration?: number };
+    "arrow_right_click": never;
+    "arrow_right_hold": never;
+    "arrow_right_release": { action_duration?: number };
+};
+
+export const kitchenPortableButtonPanelAction = actionInput<PortableButtonPanelActions, PortableButtonPanelMeta>({
+    edge: "edge1",
+    device: "portable-button-panel",
+    pin: "action",
+    actionInputKind: "remote",
+    actions: [
+        "toggle", "brightness_up_click", "brightness_down_click",
+        "brightness_up_hold", "brightness_up_release",
+        "brightness_down_hold", "brightness_down_release",
+        "toggle_hold",
+        "arrow_left_click", "arrow_left_hold", "arrow_left_release",
+        "arrow_right_click", "arrow_right_hold", "arrow_right_release",
+    ]
+
+});
+
+// --- Virtual resources ---
 
 export const kitchenVirtualButtonCeilingLight = virtualButton({
     host: "master",
