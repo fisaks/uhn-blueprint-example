@@ -16,8 +16,6 @@ export type OutputDevice = "kitchen_io8_1" | "kitchen_relay8_1" | "toilet_io8_1"
 export type InputDevice = "kitchen_io8_1" | "toilet_io8_1" | "bathroom_io8_1" | "ihc2"
 export type AnalogInputDevice = "sauna_temp_1" | "energy_meter_1" | "kitchen-temperature-display" | "outdoor-temperature" | "portable-socket-plug"
 export type AnalogOutputDevice = "bathroom_dimmer_1" | "ihc2" | "milight-toilet"
-export type Pin = number | string;
-export type AnalogPin = number | string;
 export type EnergyMeterPin =
     | 1000 | 1001 | 1002 | 1003 | 1004 | 1005 | 1006 | 1007 | 1008 | 1009
     | 1010 | 1011 | 1012 | 1013 | 1014 | 1015 | 1016 | 1017 | 1018 | 1019
@@ -35,35 +33,35 @@ export type POutputKind = BaseOutputKind;
 
 // Strong resource types
 export type DigitalInputProps = Omit<DigitalInputResourceBase<
-    PInputKind, Edge, InputDevice, Pin>, "type" | "inputKind" | "inputType">;
+    PInputKind, Edge, InputDevice>, "type" | "inputKind" | "inputType">;
 
 export type DigitalOutputProps = Omit<DigitalOutputResourceBase<
-    POutputKind, Edge, OutputDevice, Pin>, "type" | "outputKind">;
+    POutputKind, Edge, OutputDevice>, "type" | "outputKind">;
 
 // Project-local helpers (optional)
 export function inputPir(props: DigitalInputProps) {
-    return digitalInput<"pir", Edge, InputDevice, Pin>({
+    return digitalInput<"pir", Edge, InputDevice>({
         ...props,
         inputKind: "pir",
         inputType: "push",
     });
 }
 export function inputButtonPush(props: DigitalInputProps) {
-    return digitalInput<"button", Edge, InputDevice, Pin>({
+    return digitalInput<"button", Edge, InputDevice>({
         ...props,
         inputKind: "button",
         inputType: "push",
     });
 }
 export function inputButtonToggle(props: DigitalInputProps) {
-    return digitalInput<"button", Edge, InputDevice, Pin>({
+    return digitalInput<"button", Edge, InputDevice>({
         ...props,
         inputKind: "button",
         inputType: "toggle",
     });
 }
 export function inputLightSensor(props: DigitalInputProps) {
-    return digitalInput<"lightSensor", Edge, InputDevice, Pin>({
+    return digitalInput<"lightSensor", Edge, InputDevice>({
         ...props,
         inputKind: "lightSensor",
         inputType: "toggle",
@@ -71,26 +69,26 @@ export function inputLightSensor(props: DigitalInputProps) {
 }
 
 export function outputSocket(props: DigitalOutputProps) {
-    return digitalOutput<"socket", Edge, OutputDevice, Pin>({
+    return digitalOutput<"socket", Edge, OutputDevice>({
         ...props,
         outputKind: "socket",
     });
 }
 export function outputLight(props: DigitalOutputProps) {
-    return digitalOutput<"light", Edge, OutputDevice, Pin>({
+    return digitalOutput<"light", Edge, OutputDevice>({
         ...props,
         outputKind: "light",
     });
 }
 export function outputIndicatorLight(props: DigitalOutputProps) {
-    return digitalOutput<"indicator", Edge, OutputDevice, Pin>({
+    return digitalOutput<"indicator", Edge, OutputDevice>({
         ...props,
         outputKind: "indicator",
     });
 }
 
 export function outputRelay(props: DigitalOutputProps) {
-    return digitalOutput<"relay", Edge, OutputDevice, Pin>({
+    return digitalOutput<"relay", Edge, OutputDevice>({
         ...props,
         outputKind: "relay",
     });
@@ -98,49 +96,49 @@ export function outputRelay(props: DigitalOutputProps) {
 
 // Analog resource props
 export type AnalogInputProps = Omit<AnalogInputResourceBase<
-    BaseAnalogInputKind, Edge, AnalogInputDevice, AnalogPin>, "type" | "analogInputKind">;
+    BaseAnalogInputKind, Edge, AnalogInputDevice>, "type" | "analogInputKind">;
 
 export type AnalogOutputProps = Omit<AnalogOutputResourceBase<
-    BaseAnalogOutputKind, Edge, AnalogOutputDevice, AnalogPin>, "type" | "analogOutputKind">;
+    BaseAnalogOutputKind, Edge, AnalogOutputDevice>, "type" | "analogOutputKind">;
 
 // Analog factory helpers
 export function analogTemperatureSensor(props: AnalogInputProps) {
-    return analogInput<"temperature", Edge, AnalogInputDevice, AnalogPin>({
+    return analogInput<"temperature", Edge, AnalogInputDevice>({
         unit: "°C",
         ...props,
         analogInputKind: "temperature",
     });
 }
 export function analogHumiditySensor(props: AnalogInputProps) {
-    return analogInput<"humidity", Edge, AnalogInputDevice, AnalogPin>({
+    return analogInput<"humidity", Edge, AnalogInputDevice>({
         unit: "%",
         ...props,
         analogInputKind: "humidity",
     });
 }
 export function analogPowerSensor(props: AnalogInputProps) {
-    return analogInput<"power", Edge, AnalogInputDevice, AnalogPin>({
+    return analogInput<"power", Edge, AnalogInputDevice>({
         unit: "W",
         ...props,
         analogInputKind: "power",
     });
 }
 export function analogVoltageSensor(props: AnalogInputProps) {
-    return analogInput<"voltage", Edge, AnalogInputDevice, AnalogPin>({
+    return analogInput<"voltage", Edge, AnalogInputDevice>({
         unit: "V",
         ...props,
         analogInputKind: "voltage",
     });
 }
 export function analogCurrentSensor(props: AnalogInputProps) {
-    return analogInput<"current", Edge, AnalogInputDevice, AnalogPin>({
+    return analogInput<"current", Edge, AnalogInputDevice>({
         unit: "A",
         ...props,
         analogInputKind: "current",
     });
 }
 export function analogBatterySensor(props: AnalogInputProps) {
-    return analogInput<"battery", Edge, AnalogInputDevice, AnalogPin>({
+    return analogInput<"battery", Edge, AnalogInputDevice>({
         unit: "%",
         decimalPrecision: 0,
         ...props,
@@ -148,14 +146,14 @@ export function analogBatterySensor(props: AnalogInputProps) {
     });
 }
 export function analogDimmer(props: AnalogOutputProps) {
-    return analogOutput<"dimmer", Edge, AnalogOutputDevice, AnalogPin>({
+    return analogOutput<"dimmer", Edge, AnalogOutputDevice>({
         min: 0, max: 100, step: 1, unit: "%",
         ...props,
         analogOutputKind: "dimmer",
     });
 }
 export function analogValve(props: AnalogOutputProps) {
-    return analogOutput<"valve", Edge, AnalogOutputDevice, AnalogPin>({
+    return analogOutput<"valve", Edge, AnalogOutputDevice>({
         min: 0, max: 100, step: 1, unit: "%",
         ...props,
         analogOutputKind: "valve",
@@ -164,10 +162,10 @@ export function analogValve(props: AnalogOutputProps) {
 
 // Energy meter helpers (Shelly Pro 3EM — wide pin range)
 export type EnergyMeterAnalogInputProps = Omit<AnalogInputResourceBase<
-    BaseAnalogInputKind, Edge, "energy_meter_1", EnergyMeterPin>, "type" | "analogInputKind">;
+    BaseAnalogInputKind, Edge, "energy_meter_1">, "type" | "analogInputKind">;
 
 export function energyMeterPower(props: EnergyMeterAnalogInputProps) {
-    return analogInput<"power", Edge, "energy_meter_1", EnergyMeterPin>({
+    return analogInput<"power", Edge, "energy_meter_1">({
         unit: "W",
         ...props,
         analogInputKind: "power",
@@ -175,7 +173,7 @@ export function energyMeterPower(props: EnergyMeterAnalogInputProps) {
 }
 
 export function energyMeterCurrent(props: EnergyMeterAnalogInputProps) {
-    return analogInput<"current", Edge, "energy_meter_1", EnergyMeterPin>({
+    return analogInput<"current", Edge, "energy_meter_1">({
         unit: "A",
         ...props,
         analogInputKind: "current",
