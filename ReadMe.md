@@ -14,7 +14,7 @@ For the full API reference and authoring guide, see the [Blueprint Authoring Gui
 
 A UHN blueprint is a declarative description of:
 
-- **Resources** — Physical and logical devices (lights, sockets, sensors, timers, virtual inputs)
+- **Resources** — Physical and logical devices (lights, sockets, sensors, timers, virtual inputs, action inputs)
 - **Views** — Interactive UI tiles that read state from resources and send commands
 - **Scenes** — Preset command groups that control multiple resources at once
 - **Locations** — Room/area groupings of resources, views, and scenes for the UI
@@ -53,6 +53,7 @@ Only resources should be exported from this folder.
 ### `src/views`
 Contains InteractionView definitions created using the `view()` factory.
 Views define UI tiles that display resource state and send commands.
+Commands are created using the `viewCommand()` factory for type-safe resource-to-command matching.
 
 ### `src/scenes`
 Contains scene definitions created using the `scene()` factory.
@@ -112,8 +113,8 @@ pnpm z2m-import -- -f
 ```
 
 This generates:
-- `src/factory/zigbee-factory-{edge}.ts` — type-safe factory with device unions (always regenerated)
-- `src/resources/{device}-zigbee.ts` — resource consts (not exported by default, add `export` to activate or use `-x`)
+- `src/factory/zigbee-factory-{edge}.ts` — type-safe factory with device unions and action union types (always regenerated)
+- `src/resources/{device}-zigbee.ts` — resource consts, including `actionInput` resources with per-action metadata maps for button/remote devices (not exported by default, add `export` to activate or use `-x`)
 - `src/views/{device}-zigbee.ts` — auto-wired views (exported)
 - `.z2m-data/{device}.json` — raw Z2M device data (gitignored, for reference)
 - `.z2m-data/edge-config-{edge}.json` — edge config snippet (copy into edge config)

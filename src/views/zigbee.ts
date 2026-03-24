@@ -1,4 +1,4 @@
-import { view } from "@uhn/blueprint";
+import { view, viewCommand } from "@uhn/blueprint";
 import {
     kitchenTempDisplayTemperature,
     kitchenTempDisplayHumidity,
@@ -51,7 +51,7 @@ export const viewOutdoorTemperature = view({
 // Smart plug — toggleable, shows power/voltage/current as state display
 export const viewSocketPlug1 = view({
     stateFrom: [{ resource: socketPlug1State }],
-    command: { resource: socketPlug1State, type: "toggle" },
+    command: viewCommand({ resource: socketPlug1State, type: "toggle" }),
     stateDisplay: {
         items: [
             { resource: socketPlug1Power, label: "Power" },

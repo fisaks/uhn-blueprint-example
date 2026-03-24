@@ -1,4 +1,4 @@
-import { view } from "@uhn/blueprint";
+import { view, viewCommand } from "@uhn/blueprint";
 import {
     toiletMilightCeiling,
     toiletMilightCeilingBrightness,
@@ -19,7 +19,7 @@ import {
 
 export const viewToiletMilightCeiling = view({
     stateFrom: [{ resource: toiletMilightCeiling }],
-    command: { resource: toiletPanelButtonTopLeft, type: "tap" },
+    command: viewCommand({ resource: toiletPanelButtonTopLeft, type: "tap" }),
     controls: [
         { resource: toiletMilightCeilingPower, label: "Power", group: "Power" },
         { resource: toiletMilightCeilingNightMode, label: "Night Mode" },

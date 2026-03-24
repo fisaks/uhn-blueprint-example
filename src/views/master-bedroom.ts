@@ -1,4 +1,4 @@
-import { view } from "@uhn/blueprint";
+import { view, viewCommand } from "@uhn/blueprint";
 import {
     masterBedroomLightLeftCeiling,
     masterBedroomLightRightCeiling,
@@ -8,14 +8,14 @@ import {
 
 export const viewMasterBedroomLeftCeilingLight = view({
     stateFrom: [{ resource: masterBedroomLightLeftCeiling }],
-    command: { resource: masterBedroomSwitchLeftCeiling, type: "tap" },
+    command: viewCommand({ resource: masterBedroomSwitchLeftCeiling, type: "tap" }),
     icon: "lighting:ceiling",
     description: "Master bedroom left ceiling light",
 });
 
 export const viewMasterBedroomRightCeilingLight = view({
     stateFrom: [{ resource: masterBedroomLightRightCeiling }],
-    command: { resource: masterBedroomSwitchRightCeiling, type: "tap" },
+    command: viewCommand({ resource: masterBedroomSwitchRightCeiling, type: "tap" }),
     icon: "lighting:ceiling",
     description: "Master bedroom right ceiling light",
 });

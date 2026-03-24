@@ -1,4 +1,4 @@
-import { view } from "@uhn/blueprint";
+import { view, viewCommand } from "@uhn/blueprint";
 import {
     kitchenCeilingTimer,
     kitchenCountertopTimer,
@@ -11,7 +11,7 @@ import {
 
 export const viewKitchenCeilingLight = view({
     stateFrom: [{ resource: kitchenLightCeiling }],
-    command: { resource: kitchenPanelButtonWallEdgeTopLeft, type: "tap" },
+    command: viewCommand({ resource: kitchenPanelButtonWallEdgeTopLeft, type: "tap" }),
     stateDisplay: {
         items: [
             { resource: kitchenCeilingTimer, label: "Timer", style: "value" },
@@ -25,7 +25,7 @@ export const viewKitchenCeilingLight = view({
 
 export const viewKitchenCountertopLight = view({
     stateFrom: [{ resource: kitchenLightCountertops }],
-    command: { resource: kitchenPanelButtonCountertopTopRow, type: "tap" },
+    command: viewCommand({ resource: kitchenPanelButtonCountertopTopRow, type: "tap" }),
     stateDisplay: {
         items: [
             { resource: kitchenCountertopTimer, label: "Timer", style: "value" },
