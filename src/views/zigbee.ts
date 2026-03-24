@@ -17,7 +17,7 @@ import {
 } from "../resources/zigbee-smart-plug";
 
 // Kitchen temperature display — display-only, shows temp + humidity left, battery right
-export const viewKitchenTemperature = view({
+export const viewKitchenTemp = view({
     stateFrom: [],
     stateDisplay: {
         items: [
@@ -33,7 +33,7 @@ export const viewKitchenTemperature = view({
 });
 
 // Outdoor temperature — display-only, shows temp + humidity left, battery right
-export const viewOutdoorTemperature = view({
+export const viewOutdoorTemp = view({
     stateFrom: [],
     stateDisplay: {
         items: [

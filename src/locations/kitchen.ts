@@ -18,7 +18,7 @@ import {
     viewKitchenCeilingLight,
     viewKitchenCountertopLight,
 } from "../views/kitchen";
-import { viewKitchenTemperature } from "../views/zigbee";
+import { viewKitchenTemp } from "../views/zigbee";
 
 export const locationKitchen = location({
     name: "Kitchen",
@@ -26,7 +26,7 @@ export const locationKitchen = location({
     items: [
         viewKitchenCeilingLight,              // view (tap command)
         viewKitchenCountertopLight,           // view (tap command)
-        viewKitchenTemperature,               // view (display-only, zigbee temp sensor)
+        viewKitchenTemp,               // view (display-only, zigbee temp sensor)
         kitchenLightDiningTable,              // digitalOutput (light)
         kitchenLightNight,                    // digitalOutput (light)
         kitchenPir,                           // digitalInput (pir, push)

@@ -35,16 +35,28 @@
         "factory": "analogBatterySensor",
         "import": "../factory/factory"
     },
-    "analogInput.energy": {
-        "factory": "zigbeeEnergySensor",
-        "import": "../factory/zigbee-factory-edge1"
-    },
     "analogOutput.dimmer": {
         "factory": "analogDimmer",
         "import": "../factory/factory"
     },
+    "analogInput.energy": {
+        "factory": "analogInput",
+        "import": "@uhn/blueprint"
+    },
+    "actionInput.remote": {
+        "factory": "actionInput",
+        "import": "@uhn/blueprint"
+    },
+    "actionOutput.effect": {
+        "factory": "actionOutput",
+        "import": "@uhn/blueprint"
+    },
     "analogOutput.colorTemp": {
-        "factory": "zigbeeColorTemp",
-        "import": "../factory/zigbee-factory-edge1"
+        "factory": "analogOutput",
+        "import": "@uhn/blueprint"
+    },
+    "actionInput.button": {
+        "factory": "actionInput",
+        "import": "@uhn/blueprint"
     }
 }
