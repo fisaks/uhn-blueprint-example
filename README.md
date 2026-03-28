@@ -189,17 +189,17 @@ A typical setup uses:
 
 The exact configuration depends on how the UHN runtime is started and where the generated files are located.
 
-An example vscode launch configuration:
-```
+Example VS Code launch configurations for production debugging:
+```json
 {
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Attach to UHN rule runtime (sandbox)",
+            "name": "PROD Attach to UHN master rule runtime process",
             "type": "node",
             "request": "attach",
             "port": 9250,
-            "address": "localhost",
+            "address": "10.0.1.50",
             "restart": true,
             "skipFiles": [
                 "<node_internals>/**"
@@ -210,15 +210,37 @@ An example vscode launch configuration:
             "remoteRoot": "/",
             "sourceMapPathOverrides": {
                 "file:///uhn-workspace/blueprint/active/dist/*": "${workspaceFolder}/dist/blueprint-tmp/out/*",
-                "file:///uhn-runtime/node_modules/*": "/home/user/Codes/uxp/node_modules/*",
-                "/uhn-runtime/*": "/home/user/Codes/uxp/*"
+                "file:///uhn-runtime/node_modules/*": "${workspaceFolder}/../uxp/node_modules/*",
+                "file:///uhn-runtime/*": "${workspaceFolder}/../uxp/packages/*"
             }
-        }     
+        },
+        {
+            "name": "PROD Attach to UHN edge rule runtime process",
+            "type": "node",
+            "request": "attach",
+            "port": 9260,
+            "address": "10.0.1.50",
+            "restart": true,
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "sourceMaps": true,
+            "outFiles": [],
+            "localRoot": "/",
+            "remoteRoot": "/",
+            "sourceMapPathOverrides": {
+                "file:///uhn-workspace/blueprint/active/dist/*": "${workspaceFolder}/dist/blueprint-tmp/out/*",
+                "file:///uhn-runtime/node_modules/*": "${workspaceFolder}/../uxp/node_modules/*",
+                "file:///uhn-runtime/packages/*": "${workspaceFolder}/../uxp/packages/*"
+            }
+        }
     ]
 }
 ```
 
-> ℹ️ The debug port and remote paths depend on your UHN configuration.
+> Replace `10.0.1.50` with your server's LAN IP. The `address` can be `localhost` for local dev. Adjust `${workspaceFolder}/../uxp/` paths to match your local UXP repo location.
+>
+> The debug port depends on the instance: master uses **9240–9250** (default 9250), edges use **9251–9299** (auto-derived from edge name, e.g. edge1 → 9290). Configurable per-instance in the system UI.
 
 ---
 
@@ -237,9 +259,16 @@ These are expected symptoms when source maps are out of sync with the executed c
 
 ---
 
+### Rule Runtime Source Maps
+
+The rule-runtime and its dependencies (`@uhn/blueprint`, `@uhn/common`, `@uxp/common`) are compiled with `sourceMap: true` and `inlineSources: true`. This means breakpoints work not only in blueprint code but also in the framework code itself — you can step into rule engine internals, resource factories, and command handlers.
+
+These source maps are always present in the Docker image (no rebuild needed). Only the blueprint source maps require the `pnpm sourcemaps` step after building.
+
 ### Summary
 
 - Blueprints are debugged from **generated sources**, not the original `src`
 - Source maps must be generated **after** the build step
 - The debugger attaches to the running sandboxed runtime
 - Correct path mapping is essential for reliable breakpoints
+- Rule-runtime framework code is also debuggable (source maps built into Docker image)
