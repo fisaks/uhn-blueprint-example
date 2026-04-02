@@ -16,15 +16,29 @@ import {
     socketPlug1Current,
 } from "../resources/zigbee-smart-plug";
 
-// Kitchen temperature display — display-only, shows temp + humidity left, battery right
+// Kitchen temperature display — display-only, hero carousel for temp/humidity, battery icon top-right
 export const viewKitchenTemp = view({
     stateFrom: [],
     stateDisplay: {
-        items: [
+        hero: [
             { resource: kitchenTempDisplayTemperature, label: "Temperature" },
-            { resource: kitchenTempDisplayBattery, label: "Battery" },
-            { resource: kitchenTempDisplayHumidity, label: "Humidity" }
-            
+            { resource: kitchenTempDisplayHumidity, label: "Humidity" },
+        ],
+        topRight: [
+            {
+                resource: kitchenTempDisplayBattery,
+                icon: "energy:battery",
+                tooltip: "value",
+                colorMap: [
+                    { below: 20, color: "error" },
+                    { below: 50, color: "warning" },
+                    { above: 49, color: "success" },
+                ],
+                iconMap: [
+                    { below: 20, icon: "energy:battery-low" },
+                    { below: 50, icon: "energy:battery-half" },
+                ],
+            },
         ],
     },
     icon: "sensor:temperature",
@@ -32,15 +46,29 @@ export const viewKitchenTemp = view({
     keywords: ["temp", "indoor"],
 });
 
-// Outdoor temperature — display-only, shows temp + humidity left, battery right
+// Outdoor temperature — display-only, hero carousel for temp/humidity, battery icon top-right
 export const viewOutdoorTemp = view({
     stateFrom: [],
     stateDisplay: {
-        items: [
+        hero: [
             { resource: outdoorTemperature, label: "Temperature" },
-            { resource: outdoorBattery, label: "Battery" },
-            { resource: outdoorHumidity, label: "Humidity" }
-
+            { resource: outdoorHumidity, label: "Humidity" },
+        ],
+        topRight: [
+            {
+                resource: outdoorBattery,
+                icon: "energy:battery",
+                tooltip: "value",
+                colorMap: [
+                    { below: 20, color: "error" },
+                    { below: 50, color: "warning" },
+                    { above: 49, color: "success" },
+                ],
+                iconMap: [
+                    { below: 20, icon: "energy:battery-low" },
+                    { below: 50, icon: "energy:battery-half" },
+                ],
+            },
         ],
     },
     icon: "sensor:temperature",
@@ -48,13 +76,15 @@ export const viewOutdoorTemp = view({
     keywords: ["outside", "weather"],
 });
 
-// Smart plug — toggleable, shows power/voltage/current as state display
+// Smart plug — toggleable, power left, voltage/current right
 export const viewSocketPlug1 = view({
     stateFrom: [{ resource: socketPlug1State }],
     command: viewCommand({ resource: socketPlug1State, type: "toggle" }),
     stateDisplay: {
-        items: [
+        left: [
             { resource: socketPlug1Power, label: "Power" },
+        ],
+        right: [
             { resource: socketPlug1Voltage, label: "Voltage" },
             { resource: socketPlug1Current, label: "Current" },
         ],

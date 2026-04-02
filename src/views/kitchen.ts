@@ -13,9 +13,11 @@ export const viewKitchenCeilingLight = view({
     stateFrom: [{ resource: kitchenLightCeiling }],
     command: viewCommand({ resource: kitchenPanelButtonWallEdgeTopLeft, type: "tap" }),
     stateDisplay: {
-        items: [
-            { resource: kitchenCeilingTimer, label: "Timer", style: "value" },
-            { resource: kitchenPir, style: "flash", icon: "sensor:motion" },
+        left: [
+            { resource: kitchenCeilingTimer, label: "Timer" },
+        ],
+        badge: [
+            { resource: kitchenPir, icon: "sensor:motion", showWhen: "active" },
         ],
     },
     icon: "lighting:ceiling",
@@ -27,8 +29,8 @@ export const viewKitchenCountertopLight = view({
     stateFrom: [{ resource: kitchenLightCountertops }],
     command: viewCommand({ resource: kitchenPanelButtonCountertopTopRow, type: "tap" }),
     stateDisplay: {
-        items: [
-            { resource: kitchenCountertopTimer, label: "Timer", style: "value" },
+        left: [
+            { resource: kitchenCountertopTimer, label: "Timer" },
         ],
     },
     icon: "lighting:bulb",

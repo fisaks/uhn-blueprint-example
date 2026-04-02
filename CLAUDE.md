@@ -27,7 +27,7 @@ Six-layer structure under `src/`:
 
 - **`resources/`** - Exported resource instances created via factory functions. Files can be organized however you like (e.g., by room, by device type). Physical resources map to hardware via `edge`, `device`, `pin`. Logical resources (timers, virtual inputs, complex) use `host`. Only resource exports should come from this folder.
 
-- **`views/`** - InteractionView definitions created with `view()` from `@uhn/blueprint`. Views define UI tiles that read state from resources via `stateFrom[]` and send commands on interaction. Supports tap, toggle, longPress, setAnalog (slider), and clearTimer commands. Secondary state display via `stateDisplay` items (value, indicator, flash styles).
+- **`views/`** - InteractionView definitions created with `view()` from `@uhn/blueprint`. Views define UI tiles that read state from resources via `stateFrom[]` and send commands on interaction. Supports tap, toggle, longPress, setAnalog (slider), and clearTimer commands. Secondary state display via slot-based `stateDisplay` (hero, left/right flanking values, top corner icons, badge).
 
 - **`scenes/`** - Scene definitions created with `scene()` from `@uhn/blueprint`. Scenes group multiple resource commands (`setDigitalOutput`, `setAnalogOutput`, `emitSignal`) into reusable presets activated by rules or the UI.
 

@@ -1,4 +1,5 @@
-import { InteractionView, view, viewCommand } from "@uhn/blueprint";
+import { view, viewCommand } from "@uhn/blueprint";
+import type { InteractionView } from "@uhn/blueprint";
 import {
     bathroomDimmerCeiling,
     bathroomFanSpeed,
@@ -20,10 +21,14 @@ export const viewBathroomVentilation = view({
     stateFrom: [{ resource: bathroomFanSpeed, activeWhen: { above: 0 } }],
     command: viewCommand({ resource: bathroomFanSpeed, type: "setAnalog", min: 0, max: 100, step: 10, unit: "%", defaultOnValue: 60 }),
     stateDisplay: {
-        items: [
-            { resource: bathroomHumidity, label: "Humidity", unit: "%", style: "value" },
-            { resource: bathroomVentTimer, label: "Timer", style: "value" },
-            { resource: bathroomPir, style: "indicator", icon: "sensor:motion" },
+        left: [
+            { resource: bathroomHumidity, label: "Humidity", unit: "%" },
+        ],
+        right: [
+            { resource: bathroomVentTimer, label: "Timer" },
+        ],
+        topCenter: [
+            { resource: bathroomPir, icon: "sensor:motion" },
         ],
     },
     icon: "control:speed",
