@@ -21,7 +21,7 @@ export const kitchenPanelToggleLight = rule({ description: "Panel toggle → tog
     .run((ctx) => {
         if (!isCausedBy(ctx, kitchenPortableButtonPanelAction, "toggle")) return [];
         const isOn = ctx.runtime.getState(kitchenLightCeiling);
-        ctx.logger.info("Panel toggle → ceiling light", { isOn, depth: ctx.cause.depth });
+        ctx.logger.info("Panel toggle → ceiling light", { isOn, depth: "depth" in ctx.cause ? ctx.cause.depth : undefined });
         return [
             ruleAction({ type: "setDigitalOutput", resource: kitchenLightCeiling, value: !isOn }),
         ];
