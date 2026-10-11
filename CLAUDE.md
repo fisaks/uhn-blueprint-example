@@ -33,7 +33,7 @@ Six-layer structure under `src/`:
 
 - **`locations/`** - Location definitions created with `location()` from `@uhn/blueprint`. Locations group resources, views, and scenes into room/area containers for the UI. Items are auto-detected by shape (view has `stateFrom`, scene has `commands`, else resource).
 
-- **`rules/`** - Automation rules created with `rule()` from `@uhn/blueprint`. Rules use a fluent API chaining triggers followed by `.run(ctx => ...)`. The run callback receives a context with `ctx.runtime.getState()`, `ctx.timers`, `ctx.mute`, `ctx.logger`, and `ctx.cause`. Actions are constructed via the `ruleAction()` factory.
+- **`rules/`** - Automation rules created with `rule()` from `@uhn/blueprint`. Rules use a fluent API chaining triggers followed by `.run(ctx => ...)`. The run callback receives a context with `ctx.runtime.getState()`, `ctx.timers`, `ctx.mute`, `ctx.logger`, `ctx.electricity` and `ctx.cause`. Actions are constructed via the `ruleAction()` factory.
 
 ### Trigger types
 - State: `.onActivated()`, `.onDeactivated()`, `.onChanged()` (with optional `{ hysteresis }`)
@@ -41,6 +41,7 @@ Six-layer structure under `src/`:
 - Gesture: `.onTap()`, `.onLongPress(resource, durationMs)`
 - Action: `.onAction(resource, action)` - actionInput events (Zigbee buttons)
 - Timer: `.onTimerActivated()`, `.onTimerDeactivated()`
+- Electricity price: `.onPriceChanged()` (every 15-min slot, plus once at startup), `.onPriceAbove(x, opts)`, `.onPriceBelow(x, opts)` (opts: `{ hysteresis, basis: "slot" | "hour" }`); inside `run()` use `ctx.electricity` (current price, averages, cheapest slots/blocks) — see the Electricity Prices section of the authoring guide and `src/rules/electricity_price.ts`
 
 ### Action types (via `ruleAction()` factory)
 - `ruleAction({ type: "setDigitalOutput", resource, value })` - control digital output
