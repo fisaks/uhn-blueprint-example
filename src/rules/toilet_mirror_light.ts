@@ -13,7 +13,7 @@ const toiletPirStartsMirrorTimer = rule({})
     });
 
 const turnOnToiletMirrorLight = rule({})
-    .onTimerActivated(toiletTimer)
+    .onTimerStarted(toiletTimer)
     .onTap(toiletPanelButtonBottomLeft)
     .actionHints(toiletLightMirror)
     .run((ctx) => {
@@ -30,7 +30,7 @@ const turnOnToiletMirrorLight = rule({})
     });
 
 const turnOffToiletMirrorLight = rule({})
-    .onTimerDeactivated(toiletTimer)
+    .onTimerExpired(toiletTimer)
     .onTap(toiletPanelButtonBottomLeft)
     .actionHints(toiletLightMirror, toiletTimer)
     .run((ctx) => {
@@ -38,10 +38,8 @@ const turnOffToiletMirrorLight = rule({})
             return [];
         }
         ctx.logger.info("Turning off toilet mirror light", ctx.cause);
-        if (ctx.cause.event !== "timerDeactivated") {
-            ctx.timers.clear(toiletTimer);
-        }
         if (ctx.cause.event === "tap") {
+            ctx.timers.clear(toiletTimer);
             ctx.mute.clearMute(toiletPirStartsMirrorTimer, "buttonManualTap");
             ctx.mute.rule(toiletPirStartsMirrorTimer, seconds(10));
         }

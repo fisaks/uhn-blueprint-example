@@ -37,7 +37,7 @@ const kitchenCountertopLightToggle = rule({ description: "Toggle countertop ligh
     });
 
 const kitchenCountertopTimerExpired = rule({ description: "Turn off countertop lights when timer expires" })
-    .onTimerDeactivated(kitchenCountertopTimer)
+    .onTimerExpired(kitchenCountertopTimer)
     .actionHints(kitchenLightCountertops)
     .executionTarget("master")
     .run((ctx) => {
@@ -81,7 +81,7 @@ const kitchenCeilingPirRestart = rule({ description: "PIR activity restarts ceil
     });
 
 const kitchenCeilingTimerExpired = rule({ description: "Turn off ceiling light when timer expires" })
-    .onTimerDeactivated(kitchenCeilingTimer)
+    .onTimerExpired(kitchenCeilingTimer)
     .actionHints(kitchenLightCeiling)
     .executionTarget("master")
     .run((ctx) => {

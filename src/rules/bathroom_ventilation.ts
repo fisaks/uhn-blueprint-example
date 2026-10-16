@@ -34,7 +34,7 @@ const bathroomHumidityStartsVent = rule({ description: "Start ventilation when h
 
 // --- Timer activation: turn on indicator ---
 const bathroomVentTimerActivated = rule({ description: "Show indicator when ventilation timer starts" })
-    .onTimerActivated(bathroomVentTimer)
+    .onTimerStarted(bathroomVentTimer)
     .actionHints(bathroomVentIndicator)
     .run((ctx) => {
         ctx.logger.info("Ventilation timer activated — indicator on");
@@ -45,7 +45,7 @@ const bathroomVentTimerActivated = rule({ description: "Show indicator when vent
 
 // --- Timer expiry: turn off fan and indicator ---
 const bathroomVentTimerExpired = rule({ description: "Stop ventilation when timer expires" })
-    .onTimerDeactivated(bathroomVentTimer)
+    .onTimerExpired(bathroomVentTimer)
     .actionHints(bathroomFanSpeed, bathroomVentIndicator)
     .run((ctx) => {
         ctx.logger.info("Ventilation timer expired — fan and indicator off");
