@@ -38,6 +38,7 @@ src/
 ├── views/          # InteractionView UI tile definitions
 ├── scenes/         # Scene preset definitions
 ├── locations/      # Room/area groupings for the UI
+├── schedules/      # Time-based phases that rules react to
 ├── rules/          # Automation rule definitions
 └── helpers/        # Shared utilities (optional, any structure)
 ```
@@ -62,6 +63,10 @@ Scenes group multiple resource commands into reusable presets.
 ### `src/locations`
 Contains location definitions created using the `location()` factory.
 Locations group resources, views, and scenes into room/area containers for the UI.
+
+### `src/schedules`
+Contains schedules created using the `schedule()` factory.
+A schedule defines named phases (cron, sun event or fixed date) that rules react to with `onSchedulePhase()`.
 
 ### `src/rules`
 Contains automation rules created using the `rule()` factory.
