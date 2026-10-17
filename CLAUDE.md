@@ -40,7 +40,7 @@ Six-layer structure under `src/`:
 - Threshold: `.onAbove(resource, threshold, opts)`, `.onBelow(resource, threshold, opts)`
 - Gesture: `.onTap()`, `.onLongPress(resource, durationMs)`
 - Action: `.onAction(resource, action)` - actionInput events (Zigbee buttons)
-- Timer: `.onTimerActivated()`, `.onTimerDeactivated()`
+- Timer: `.onTimerStarted()`, `.onTimerExpired()` (`ctx.timers.clear()` cancels silently, it triggers neither)
 - Electricity price: `.onPriceChanged()` (every 15-min slot, plus once at startup), `.onPriceAbove(x, opts)`, `.onPriceBelow(x, opts)` (opts: `{ hysteresis, basis: "slot" | "hour" }`); inside `run()` use `ctx.electricity` (current price, averages, cheapest slots/blocks) — see the Electricity Prices section of the authoring guide and `src/rules/electricity_price.ts`
 
 ### Action types (via `ruleAction()` factory)
